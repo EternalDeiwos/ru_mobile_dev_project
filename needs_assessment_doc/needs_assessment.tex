@@ -69,7 +69,7 @@ BCOR5mm, % Binding correction
 %	TITLE AND AUTHOR(S)
 %----------------------------------------------------------------------------------------
 
-\title{\normalfont\spacedallcaps{Article Title}} % The article title
+\title{\normalfont\spacedallcaps{Needs assessment for BioMap Mobile Application}} % The article title
 
 \author{\spacedlowsmallcaps{Graeme Faul\textsuperscript{1} \& Gregory Linklater\textsuperscript{1}}} % The article author(s) - author affiliations need to be specified in the AUTHOR AFFILIATIONS block
 
@@ -103,6 +103,8 @@ BCOR5mm, % Binding correction
 
 \listoftables % Print the list of tables
 
+
+
 %----------------------------------------------------------------------------------------
 %	AUTHOR AFFILIATIONS
 %----------------------------------------------------------------------------------------
@@ -112,7 +114,35 @@ BCOR5mm, % Binding correction
 %----------------------------------------------------------------------------------------
 
 \newpage % Start the article content on the second page, remove this if you have a longer abstract that goes onto the second page
+\section{Problem Specification}
 
+\subsection{Background}
+The Animal Demography Unit (ADU) is an online database of fauna and flora sightings from around the world. It is comprised of records sent in by various individuals from around the world. Each record notes the date, location, classification of the species of the subject of any particular entry. It also includes one or more pictures of the subject and the name of the individual who submitted the record. Each record undergoes a verification process to determine its validity before it is added to the database.
+\subsection{The problem}
+The problem outlined by the client is that the system for recording new entries is slow and outdated. The current process for creating a new record is done manually on a web based system with the individual having to capture everything themselves. This includes location, pictures (which often have to be transferred from camera to a PC and then uploaded), personal details, date and species. This is a very time consuming process and also presents the possibility of incorrect data capture. From this, a clear need for an automated and modern solution can be identified.   
+
+\section{Existing System}
+Assuming the individual has a registered account on ADU, the steps for adding  a new record are as follows:
+\begin{enumerate}
+\item Log in to the website
+\item Click "Data upload" link
+\item Fill in all fields, namely: Additional observers, date (will default to current date), and location (exact latitude and longitude can be determined using Google Map widget)
+\item Save the record and continue to next page
+\end{enumerate}
+On the second page, the user can enter up to three records at once on any of the various projects. For each record the user must:
+\begin{enumerate}
+\item Select the project for which they wish the record to be entered in
+\item Enter the collection date (will default to current date)
+\item Upload up to three pictures (Most likely copied from a camera enabled device)
+\item Upload a sound file (for use on FrogMAP only)
+\item Identify the species
+\item Enter any additional notes
+\item Enter nest count and type (for use on PHOWN only)
+\end{enumerate}
+
+\section{Needs of the Client}
+(I think you took better notes than I did in this section, basically we just need to list everything he asked for in the lecture)
+\section{Assessment of Needs}
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
