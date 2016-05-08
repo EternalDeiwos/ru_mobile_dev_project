@@ -99,9 +99,9 @@ BCOR5mm, % Binding correction
 
 \tableofcontents % Print the table of contents
 
-\listoffigures % Print the list of figures
+% \listoffigures % Print the list of figures
 
-\listoftables % Print the list of tables
+% \listoftables % Print the list of tables
 
 
 
@@ -114,22 +114,40 @@ BCOR5mm, % Binding correction
 %----------------------------------------------------------------------------------------
 
 \newpage % Start the article content on the second page, remove this if you have a longer abstract that goes onto the second page
-\section{Problem Specification}
 
-\subsection{Background}
+\section{Problem Specification} % (fold)
+\label{sec:problem_specification}
+
+\subsection{Background} % (fold)
+\label{sub:background}
+
 The Animal Demography Unit (ADU) is an online database of fauna and flora sightings from around the world. It is comprised of records sent in by various individuals from around the world. Each record notes the date, location, classification of the species of the subject of any particular entry. It also includes one or more pictures of the subject and the name of the individual who submitted the record. Each record undergoes a verification process to determine its validity before it is added to the database.
-\subsection{The problem}
+
+% subsection background (end)
+
+\subsection{The Problem} % (fold)
+\label{sub:the_problem}
+
 The problem outlined by the client is that the system for recording new entries is slow and outdated. The current process for creating a new record is done manually on a web based system with the individual having to capture everything themselves. This includes location, pictures (which often have to be transferred from camera to a PC and then uploaded), personal details, date and species. This is a very time consuming process and also presents the possibility of incorrect data capture. From this, a clear need for an automated and modern solution can be identified.   
 
-\section{Existing System}
+% subsection the_problem (end)
+
+% section problem_specification (end)
+
+\section{Existing System} % (fold)
+\label{sec:existing_system}
+
 Assuming the individual has a registered account on ADU, the steps for adding  a new record are as follows:
+
 \begin{enumerate}
 \item Log in to the website
-\item Click "Data upload" link
+\item Click ``Data upload'' link
 \item Fill in all fields, namely: Additional observers, date (will default to current date), and location (exact latitude and longitude can be determined using Google Map widget)
 \item Save the record and continue to next page
 \end{enumerate}
+
 On the second page, the user can enter up to three records at once on any of the various projects. For each record the user must:
+
 \begin{enumerate}
 \item Select the project for which they wish the record to be entered in
 \item Enter the collection date (will default to current date)
@@ -140,18 +158,38 @@ On the second page, the user can enter up to three records at once on any of the
 \item Enter nest count and type (for use on PHOWN only)
 \end{enumerate}
 
-\section{Needs of the Client}
+% section existing_system (end)
+
+\section{Needs of the Client} % (fold)
+\label{sec:needs_of_the_client}
+
+The client would like an android smart phone application to be developed that will reduce the human error in the process of capturing information of specimens as mentioned in Section~\vref{sub:the_problem}. In it's simplest form, users of the application should be able to submit photos and metadata of specimens found in the wild while automating as much of the data capture process as possible. This serves to decrease the barrier to entry for participation in this citizen science project and therefore would hopefully increase participation. \\
+
+\noindent
+Using the built-in hardware and sensors of a smart phone it is possible to automate the process of capturing GPS, date and time whenever a picture is taken. It is further possible to automate data entry by having the user log in and select the database they wish to contribute to prior to taking a photo; this would allow us to attach user data to the submission and automatically submit it to the correct database. \\
+
+\noindent
+The client has requested that the application be created with non-technical users in mind; meaning that the application should be extremely simple to operate, with very little interaction needed to get to the main purpose of the application -- namely taking pictures of newly found specimens. Following that, the user should be allowed to optionally add descriptions and additional media to the submission and should confirm the automatically entered data such as the date and locality of the specimen. Once the submission is made then the users' part of the process is done and they can move to new specimens to collect. \\
+
+\noindent
 (I think you took better notes than I did in this section, basically we just need to list everything he asked for in the lecture)
-\section{Assessment of Needs}
+
+% section needs_of_the_client (end)
+
+\section{Assessment of Needs} % (fold)
+\label{sec:assessment_of_needs}
+
+% section assessment_of_needs (end)
+
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
 
-\renewcommand{\refname}{\spacedlowsmallcaps{References}} % For modifying the bibliography heading
+% \renewcommand{\refname}{\spacedlowsmallcaps{References}} % For modifying the bibliography heading
 
-\bibliographystyle{unsrt}
+% \bibliographystyle{unsrt}
 
-\bibliography{sample.bib} % The file containing the bibliography
+% \bibliography{sample.bib} % The file containing the bibliography
 
 %----------------------------------------------------------------------------------------
 
