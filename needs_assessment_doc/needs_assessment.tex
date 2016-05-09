@@ -166,15 +166,39 @@ On the second page, the user can enter up to three records at once on any of the
 The client would like an android smart phone application to be developed that will reduce the human error in the process of capturing information of specimens as mentioned in Section~\vref{sub:the_problem}. In it's simplest form, users of the application should be able to submit photos and metadata of specimens found in the wild while automating as much of the data capture process as possible. This serves to decrease the barrier to entry for participation in this citizen science project and therefore would hopefully increase participation. \\
 
 \noindent
-Using the built-in hardware and sensors of a smart phone it is possible to automate the process of capturing GPS, date and time whenever a picture is taken. It is further possible to automate data entry by having the user log in and select the database they wish to contribute to prior to taking a photo; this would allow us to attach user data to the submission and automatically submit it to the correct database. \\
+The client has requested that the application be created with non-technical users in mind; meaning that the application should be extremely simple to operate, with very little interaction needed to get to the main purpose of the application -- namely taking pictures of newly found specimens. Following that, the user should be allowed to optionally add descriptions and additional media to the submission and should confirm the automatically entered data such as the date and locality of the specimen. Once the submission is made then the users' part of the process is done and they can move to new specimens to collect. 
 
-\noindent
-The client has requested that the application be created with non-technical users in mind; meaning that the application should be extremely simple to operate, with very little interaction needed to get to the main purpose of the application -- namely taking pictures of newly found specimens. Following that, the user should be allowed to optionally add descriptions and additional media to the submission and should confirm the automatically entered data such as the date and locality of the specimen. Once the submission is made then the users' part of the process is done and they can move to new specimens to collect. \\
+\subsection{Client Requests} % (fold)
+\label{sub:client_requests}
+
+The specific requests of the client are as follows:
+\begin{enumerate}
+\item The user must be able to submit new records for any one of the databases provided by the ADU.
+\item Verify the identity of the user.
+\item Submissions should contain the following information:
+\begin{itemize}
+  \item Media relating to the specimen found (photographs, sound files, etc.)
+  \item Location data automatically obtained from the user's device.
+  \item Date and time automatically obtained from the user's device.
+  \item Optional universal or database specific metadata and textual descriptions of location and specimen
+\end{itemize}
+\item Allow the user to overwrite any automatically obtained data (namely date, time and location).
+\item Detect poor photographs and notify user as such.
+\item Option to only upload records when the user is connected to Wi-Fi.
+\item Verify that all new records are complete before submission.
+\end{enumerate}
+
+% subsection client_requests (end)
 
 % section needs_of_the_client (end)
 
 \section{Assessment of Needs} % (fold)
 \label{sec:assessment_of_needs}
+
+Regarding most of the requirements (or needs) put forward by the client; 
+
+\noindent
+Using the built-in hardware and sensors of a smart phone it is possible to automate the process of capturing GPS, date and time whenever a picture is taken. It is further possible to automate data entry by having the user log in and select the database they wish to contribute to prior to taking a photo; this would allow us to attach user data to the submission and automatically submit it to the correct database. \\
 
 % section assessment_of_needs (end)
 
