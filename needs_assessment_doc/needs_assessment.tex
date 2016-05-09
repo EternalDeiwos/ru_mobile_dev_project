@@ -178,9 +178,10 @@ The specific requests of the client are as follows:
 \item Submissions should contain the following information:
 \begin{itemize}
   \item Media relating to the specimen found (photographs, sound files, etc.)
-  \item Location data automatically obtained from the user's device.
-  \item Date and time automatically obtained from the user's device.
+  \item Location data automatically obtained from the user's device
+  \item Date and time automatically obtained from the user's device
   \item Optional universal or database specific metadata and textual descriptions of location and specimen
+  \item Metadata pertaining to the user who made the submission
 \end{itemize}
 \item Allow the user to overwrite any automatically obtained data (namely date, time and location).
 \item Detect poor photographs and notify user as such.
@@ -194,18 +195,16 @@ The specific requests of the client are as follows:
 
 \section{Assessment of Needs} % (fold)
 \label{sec:assessment_of_needs}
-\begin{enumerate}
-\item Fully possible, however collaboration with ADU will be necessary in order for the user to access their ADU account. A staging authentication service will be used until this function is available.
-\item All ADU databases will be made available for the user to select from.
-\item Using the built-in hardware and sensors of a smart phone it is possible to automate the process of capturing GPS, date and time whenever a picture is taken. It is further possible to automate data entry by having the user log in and select the database they wish to contribute to prior to taking a photo; this would allow us to attach user data to the submission and automatically submit it to the correct database.
-\item The option will be made available next to each automatically obtained entry
-\item This is unlikely to be viable, an android device won't likely have the processing capabilities to determine if a picture is suitable for submission. It may be a better option to provide either a built in tutorial on how to correctly capture specimen or a link to such a tutorial.
-\item A setting can be implemented that will allow the user to select how records are uploaded, such as "Upload Immediately", "Upload when connected to Wi-Fi", "Prompt me for upload".
-\item It can be enforced that a record may only be submitted when it has all the required data. Required data will be identical to that of the existing ADU system.
-\end{enumerate}
 
-\noindent
- \\
+\begin{enumerate}
+\item Due to the nature of credentials, it is unlikely that the ADU will allow us access to their users' credentials. While the system is under developement, authentication will happen through the use of a separate authentication service in order to demonstrate functionality; this is the problem being deferred for when integration takes place.
+\item The user will select the database that they wish to contribute to before making a submission.
+\item Using the built-in hardware and sensors of a smart phone it is possible to automate the process of capturing GPS, date and time whenever a picture is taken. It is further possible to automate data entry by having the user log in and select the database they wish to contribute to prior to taking a photo; this would allow us to attach user data to the submission.
+\item An option will be made available next to each of the automatically obtained entries to confirm or edit the value therein.
+\item This is unlikely to be viable as this functionality (which would be labelled a ``nice to have'') represents a disproportionate amount of work for the benefit gained from doing so. This functionality is also likely to be costly in terms of device resources such as battery life and would also require more modern devices to run the app. An alternative method of dealing with this may be to include a tutorial in the app or at the very least; a link to such a tutorial.
+\item Submissions will be appended to a queue which will be processed either immediately or when the user is next connected to a Wi-Fi network. This can be configured from the application's settings page.
+\item Required fields will be the same as that of the existing ADU system. Submissions missing required fields will not be allowed by the app and helpful messages will be displayed detailing what is missing from a submission.
+\end{enumerate}
 
 % section assessment_of_needs (end)
 
