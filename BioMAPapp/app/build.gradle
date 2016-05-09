@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.github.eternaldeiwos.biomapapp"
+        applicationId "eternaldeiwos.github.com.biomapapp"
         minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
