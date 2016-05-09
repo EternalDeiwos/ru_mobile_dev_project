@@ -173,8 +173,8 @@ The client has requested that the application be created with non-technical user
 
 The specific requests of the client are as follows:
 \begin{enumerate}
-\item The user must be able to submit new records for any one of the databases provided by the ADU.
 \item Verify the identity of the user.
+\item The user must be able to submit new records for any one of the databases provided by the ADU.
 \item Submissions should contain the following information:
 \begin{itemize}
   \item Media relating to the specimen found (photographs, sound files, etc.)
@@ -194,11 +194,18 @@ The specific requests of the client are as follows:
 
 \section{Assessment of Needs} % (fold)
 \label{sec:assessment_of_needs}
-
-Regarding most of the requirements (or needs) put forward by the client; 
+\begin{enumerate}
+\item Fully possible, however collaboration with ADU will be necessary in order for the user to access their ADU account. A staging authentication service will be used until this function is available.
+\item All ADU databases will be made available for the user to select from.
+\item Using the built-in hardware and sensors of a smart phone it is possible to automate the process of capturing GPS, date and time whenever a picture is taken. It is further possible to automate data entry by having the user log in and select the database they wish to contribute to prior to taking a photo; this would allow us to attach user data to the submission and automatically submit it to the correct database.
+\item The option will be made available next to each automatically obtained entry
+\item This is unlikely to be viable, an android device won't likely have the processing capabilities to determine if a picture is suitable for submission. It may be a better option to provide either a built in tutorial on how to correctly capture specimen or a link to such a tutorial.
+\item A setting can be implemented that will allow the user to select how records are uploaded, such as "Upload Immediately", "Upload when connected to Wi-Fi", "Prompt me for upload".
+\item It can be enforced that a record may only be submitted when it has all the required data. Required data will be identical to that of the existing ADU system.
+\end{enumerate}
 
 \noindent
-Using the built-in hardware and sensors of a smart phone it is possible to automate the process of capturing GPS, date and time whenever a picture is taken. It is further possible to automate data entry by having the user log in and select the database they wish to contribute to prior to taking a photo; this would allow us to attach user data to the submission and automatically submit it to the correct database. \\
+ \\
 
 % section assessment_of_needs (end)
 
