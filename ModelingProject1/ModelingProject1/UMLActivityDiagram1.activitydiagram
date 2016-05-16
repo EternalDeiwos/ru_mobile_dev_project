@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="e139f91f-802e-445e-852e-74a17ed46f83" name="Login" linkedPackageId="50099b03-4d57-48da-a82c-f0a2c6b04fad" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="7ac5de18-b3dc-44b8-8797-bcb2fd27f07b">
+      <elementDefinition Id="8dc16eaf-7699-41b3-afd0-868fc65a3b91" />
+      <body>Valid credentials?</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="e8067c85-72ec-403c-a00e-d6a6ecf9cece" LastKnownName="Valid Login Credentials" />
+      </annotatedElements>
+    </comment>
+    <comment Id="ce3f17e8-a9f8-4b26-9d6f-5e1475e84721">
+      <elementDefinition Id="041956f8-edc2-40d8-a6d3-a25eabaadd45" />
+      <body>Yes</body>
+    </comment>
+    <comment Id="a709a459-3359-41a3-b240-87c4ac39edd2">
+      <elementDefinition Id="d9d6e07a-8202-4c59-a36d-3b047da9026d" />
+      <body>No</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="7ca88874-fdbe-4058-a958-c60879253e97">
+      <profileInstance Id="05e3d0aa-b3ff-460b-82e5-d7336c2391ee" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="9b06160b-d523-48a1-a76d-b18535dfeda6">
+      <profileInstance Id="71ed1d3e-556f-48c9-8262-0fa4e7f48969" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="904e7a51-003b-4fce-b531-3ce7f773ed4f" name="Login" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="1387b6ae-4d38-473f-9b53-b9c2f196ec7d" />
+        <nodes>
+          <initialNode Id="432d8a31-7cf6-4eb4-b809-c5b6aca26437" name="Initial1" isLeaf="false">
+            <elementDefinition Id="f57a5703-d76a-4953-a00f-48260191d57d" />
+            <flowNodeTargets>
+              <controlFlow Id="e943abdc-82b7-4c46-9063-a1e105a5ed22" isLeaf="false">
+                <opaqueActionMoniker Id="b60f330b-0ca6-4f0e-9788-ac0721605caa" LastKnownName="User enters login credentials and clicks login button" />
+                <elementDefinition Id="5fd9e689-c743-4eb5-937b-34bf0dc2d32a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="b60f330b-0ca6-4f0e-9788-ac0721605caa" name="User enters login credentials and clicks login button" isLeaf="false">
+            <elementDefinition Id="cb90e8ab-e28d-4762-b670-58c8b49bee91" />
+            <flowNodeTargets>
+              <controlFlow Id="6de1643b-f2f1-49bb-8fb7-6bb9feb224b9" isLeaf="false">
+                <decisionNodeMoniker Id="e8067c85-72ec-403c-a00e-d6a6ecf9cece" LastKnownName="Valid Login Credentials" />
+                <elementDefinition Id="c5c5d716-f9f0-4508-98d4-7316247759d9" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="e8067c85-72ec-403c-a00e-d6a6ecf9cece" name="Valid Login Credentials" isLeaf="false">
+            <elementDefinition Id="5940f162-cd34-418b-9c2b-b93398c6ac27" />
+            <objectFlowTargets>
+              <objectFlow Id="45e5cb55-790d-4563-8154-49f931e84a30" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="d9ea7258-9b88-4c94-8505-85004d994bcf" LastKnownName="User logged in" />
+                <elementDefinition Id="8a4b81cb-7ef8-4c29-a24e-df10ed053225" />
+              </objectFlow>
+              <objectFlow Id="24db0060-9ee0-48b9-afd1-eccd11d7df4f" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="c42ed4af-c7df-431b-afe0-6370ff7cd321" LastKnownName="Returned to login screen" />
+                <elementDefinition Id="275f4019-7d52-413f-9519-eb770d3ad507" />
+              </objectFlow>
+            </objectFlowTargets>
+          </decisionNode>
+          <objectNode Id="d9ea7258-9b88-4c94-8505-85004d994bcf" name="User logged in" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="e92cc895-544e-4a9f-b5b4-5e580681ca1f" />
+            <objectFlowTargets>
+              <objectFlow Id="b695f058-7259-4655-8c46-71b9312e34e0" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityFinalNodeMoniker Id="34339cf5-734c-4ef7-bccf-6c57c6cc1627" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="0f4e796f-940c-4d46-8594-b1147cc336a5" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="02e0cdac-8a03-4f89-9210-0df979fc5865" name="2147483647" value="2147483647">
+                <elementDefinition Id="649ff94b-c1d8-4bb7-a13c-72971ac8407e" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <activityFinalNode Id="34339cf5-734c-4ef7-bccf-6c57c6cc1627" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="16a0a448-8a55-4fb0-aee8-2e027921eb7f" />
+          </activityFinalNode>
+          <objectNode Id="c42ed4af-c7df-431b-afe0-6370ff7cd321" name="Returned to login screen" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="1685af98-8441-41d3-a4b3-9a94d8e10a6d" />
+            <objectFlowTargets>
+              <objectFlow Id="493be72a-7941-4fe2-991c-04a634fcb794" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="b60f330b-0ca6-4f0e-9788-ac0721605caa" LastKnownName="User enters login credentials and clicks login button" />
+                <elementDefinition Id="73528a60-9cfc-4003-927a-b9278f516e53" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="de61a7c5-5fe0-46e4-8cda-353fc517e225" name="2147483647" value="2147483647">
+                <elementDefinition Id="a5edcbaf-00c6-44e2-bb81-09f2bb93f087" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="50099b03-4d57-48da-a82c-f0a2c6b04fad" name="ModelingProject1">
+    <elementDefinition Id="a6862fcd-6e7d-40e6-90a2-0d2253d6942d" />
+  </package>
+</activityRootModel>

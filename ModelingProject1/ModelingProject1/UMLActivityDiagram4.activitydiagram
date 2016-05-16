@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="26563bd8-0562-449a-a974-4169a2b24f39" name="Hamburger" linkedPackageId="fc71b0c4-8e38-48b0-ab7e-e01361c87574" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="dbd0b273-8e31-4925-abe4-a9008351d39f">
+      <profileInstance Id="b4b9ed68-0653-4438-8119-e26259486679" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="05514a47-5db3-4002-b4ec-c292829ef6c0">
+      <profileInstance Id="7cf4aa5d-e473-4d8e-aab7-748d6e77eb13" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="97f8b263-a134-45ae-9fa0-a51bc5ebed04" name="Hamburger" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="78b70716-13c6-4104-b5fc-d02901f32201" />
+        <nodes>
+          <initialNode Id="8fa187f6-4a3e-4308-939c-62cf0b7ac51e" name="Initial1" isLeaf="false">
+            <elementDefinition Id="e3b44163-9ebc-43c0-8cae-0bad06eb356b" />
+            <flowNodeTargets>
+              <controlFlow Id="c851687a-0994-4ce8-85b9-fffe503c1f65" isLeaf="false">
+                <opaqueActionMoniker Id="8ce23d1a-f462-4d4c-8afd-7999e9b87b22" LastKnownName="User clicks on hamburger icon" />
+                <elementDefinition Id="2518829c-2555-49a7-aa10-3c6531bdf524" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="8ce23d1a-f462-4d4c-8afd-7999e9b87b22" name="User clicks on hamburger icon" isLeaf="false">
+            <elementDefinition Id="a668dd22-8aea-4b37-9627-9eca720ac337" />
+            <flowNodeTargets>
+              <controlFlow Id="f08890b1-8d9a-4604-a9ae-b822e2747577" isLeaf="false">
+                <decisionNodeMoniker Id="3a39c11e-0b13-48d1-a7f7-e14859660da1" LastKnownName="Decision1" />
+                <elementDefinition Id="20a5d966-b06d-4518-9a62-14bacf6e6428" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="3a39c11e-0b13-48d1-a7f7-e14859660da1" name="Decision1" isLeaf="false">
+            <elementDefinition Id="94a7c731-0fdc-4a2f-af7e-47d9d9d24641" />
+            <flowNodeTargets>
+              <controlFlow Id="5e4bdc8b-2462-4fdc-969b-277891cf8c51" isLeaf="false">
+                <opaqueActionMoniker Id="d1572f12-5acb-4f41-879e-4d93ce83feec" LastKnownName="User clicks Quit button" />
+                <elementDefinition Id="0f598aa6-1699-449d-bd56-5d98f11c29d4" />
+              </controlFlow>
+              <controlFlow Id="3febbdc0-9303-496f-b4a1-e0ffeacb87c4" isLeaf="false">
+                <opaqueActionMoniker Id="63e118dd-a579-4070-a054-2eba9849b0d1" LastKnownName="User clicks Logout button" />
+                <elementDefinition Id="96b528c9-c2bb-46ac-b89e-5680b7207797" />
+              </controlFlow>
+              <controlFlow Id="cca411bf-8501-42de-9e92-c13c9799c8e0" isLeaf="false">
+                <opaqueActionMoniker Id="910e83f6-89ad-416c-a709-1da7a1d7f0a1" LastKnownName="User clicks Help button " />
+                <elementDefinition Id="133b9d28-b46d-4de0-b09d-695681322f05" />
+              </controlFlow>
+              <controlFlow Id="6a01c407-4480-4b32-9f70-1e2e55422432" isLeaf="false">
+                <opaqueActionMoniker Id="eebc21ce-e52d-4c5d-b9bd-617115030ff3" LastKnownName="User clicks Settings button" />
+                <elementDefinition Id="adf18293-00cf-4cca-81af-cca1d8037c37" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="eebc21ce-e52d-4c5d-b9bd-617115030ff3" name="User clicks Settings button" isLeaf="false">
+            <elementDefinition Id="8a38f936-6068-448c-b872-8ddd15d7b28b" />
+            <flowNodeTargets>
+              <controlFlow Id="40183cfe-78ee-41e4-89b2-f2400ecc1fef" isLeaf="false">
+                <opaqueActionMoniker Id="c46b4d0c-8ab0-492a-bace-7e24eb47c77f" LastKnownName="User changes settings" />
+                <elementDefinition Id="02b76845-d0cb-4a67-ba87-e6170da8879a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="910e83f6-89ad-416c-a709-1da7a1d7f0a1" name="User clicks Help button " isLeaf="false">
+            <elementDefinition Id="364e7a81-a2ae-4a8e-9b92-0b1c9ad055b1" />
+            <flowNodeTargets>
+              <controlFlow Id="6a4adc59-37f8-4ad3-ad43-ab2c9e6f1f51" isLeaf="false">
+                <opaqueActionMoniker Id="71200dc1-6c3d-420a-b4b0-c5e8520ed61a" LastKnownName="User clicks tick button" />
+                <elementDefinition Id="7d6320eb-4f6c-48e2-abdf-c47ebf3177e9" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="63e118dd-a579-4070-a054-2eba9849b0d1" name="User clicks Logout button" isLeaf="false">
+            <elementDefinition Id="055a2a25-ad47-48ab-a72c-2bbfa9adf433" />
+            <objectFlowTargets>
+              <objectFlow Id="b123606e-ea4e-40ed-a9be-3c8b0bbbe517" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="37c38b3b-3d76-4d2e-966e-83c5906ad9e1" LastKnownName="User Logged out" />
+                <elementDefinition Id="a24ca8c4-7cd5-4c6f-a9cf-467c718c9d5b" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <opaqueAction Id="d1572f12-5acb-4f41-879e-4d93ce83feec" name="User clicks Quit button" isLeaf="false">
+            <elementDefinition Id="b814498c-347d-4b95-9b46-edb7f51275aa" />
+            <objectFlowTargets>
+              <objectFlow Id="94e91818-2c1a-4347-b585-e66ca8b70c52" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="e8f7e5dd-360e-43aa-b84e-101f55d437c0" LastKnownName="Application Quit" />
+                <elementDefinition Id="dd58ddd6-81e6-4a12-8424-23831895fa12" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <activityFinalNode Id="15896584-38ee-4db7-b19f-ea84b8f2ca50" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="b3c30b5e-9bbb-45ad-814f-69c950fbea89" />
+          </activityFinalNode>
+          <opaqueAction Id="71200dc1-6c3d-420a-b4b0-c5e8520ed61a" name="User clicks tick button" isLeaf="false">
+            <elementDefinition Id="3e4b6faf-611d-4e5c-9409-e26dc23a3250" />
+            <flowNodeTargets>
+              <controlFlow Id="8eef8cb7-9590-4bcd-aae4-5e7a1dfc8919" isLeaf="false">
+                <activityFinalNodeMoniker Id="15896584-38ee-4db7-b19f-ea84b8f2ca50" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="cf4d75ad-8dce-44df-a97d-917c149b7b37" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="c46b4d0c-8ab0-492a-bace-7e24eb47c77f" name="User changes settings" isLeaf="false">
+            <elementDefinition Id="e9087df6-dcc9-4ff2-8b4e-25361872ae5a" />
+            <flowNodeTargets>
+              <controlFlow Id="421c3775-efe4-461d-915e-a09ac9e85e57" isLeaf="false">
+                <decisionNodeMoniker Id="2535b06f-f68e-4153-bcf5-eb666b4840bb" LastKnownName="Decision2" />
+                <elementDefinition Id="9bfe2cb7-dab3-4bd4-8f12-216fc2b764b5" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="2535b06f-f68e-4153-bcf5-eb666b4840bb" name="Decision2" isLeaf="false">
+            <elementDefinition Id="cc83d0a2-2b99-4b17-8f25-6cf6d75ed166" />
+            <flowNodeTargets>
+              <controlFlow Id="45c208b5-9a14-4f9e-9076-dccca866b9f1" isLeaf="false">
+                <opaqueActionMoniker Id="e36bb61f-f7d2-42e9-94ae-c4db76469f29" LastKnownName="User clicks tick button" />
+                <elementDefinition Id="eb185a67-bc94-4ec5-be83-5e22293bb710" />
+              </controlFlow>
+              <controlFlow Id="91912b10-a426-464b-8968-f5ebb7e4db13" isLeaf="false">
+                <opaqueActionMoniker Id="921f71e8-66c0-413d-bad9-6075b7088e09" LastKnownName="User clicks cross button" />
+                <elementDefinition Id="748f1b3f-8606-4115-9e28-dfe1a2d97454" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="921f71e8-66c0-413d-bad9-6075b7088e09" name="User clicks cross button" isLeaf="false">
+            <elementDefinition Id="0c0cb491-5c20-437d-975c-fcd22b535cfc" />
+            <objectFlowTargets>
+              <objectFlow Id="99cd68c7-138d-49bb-b574-521499127550" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="221006b6-2126-45b1-908d-5b4fe6e396e0" LastKnownName="Changes discarded" />
+                <elementDefinition Id="322f4b05-f6ee-4193-928d-ea09d8d6458c" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <opaqueAction Id="e36bb61f-f7d2-42e9-94ae-c4db76469f29" name="User clicks tick button" isLeaf="false">
+            <elementDefinition Id="48cf7c2c-9932-4666-b1e0-02d276db65c1" />
+            <objectFlowTargets>
+              <objectFlow Id="8c08596d-dce3-4e74-bc81-59b6d2abbcce" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="e29a2037-effd-4909-839f-c149025667d3" LastKnownName="Changes saved" />
+                <elementDefinition Id="72e77acc-7524-46c7-bdd7-a78593bd1467" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <objectNode Id="e29a2037-effd-4909-839f-c149025667d3" name="Changes saved" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="df165742-9b80-4e97-8959-50ff4955edcd" />
+            <objectFlowTargets>
+              <objectFlow Id="85884328-a2f3-4e5d-973f-748f6d15ca9c" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityFinalNodeMoniker Id="15896584-38ee-4db7-b19f-ea84b8f2ca50" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="291ed4f6-ef89-4522-b6c0-6cc11ee64878" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="2a32310e-cac5-4432-a323-b366c07cdc6a" name="2147483647" value="2147483647">
+                <elementDefinition Id="c328953c-1531-49d2-acbd-11538b0feabf" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="221006b6-2126-45b1-908d-5b4fe6e396e0" name="Changes discarded" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="425ccf9a-3919-4928-9512-d1d3241c6e9b" />
+            <objectFlowTargets>
+              <objectFlow Id="e9d491a4-8d5f-414e-ac92-2b1d8bb05db9" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityFinalNodeMoniker Id="15896584-38ee-4db7-b19f-ea84b8f2ca50" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="dd5b9576-9ebd-42e3-9c70-42ffed59d6e6" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="be342896-299f-40f0-8ff4-2ded2bc23fc8" name="2147483647" value="2147483647">
+                <elementDefinition Id="e4343119-8bd4-4855-955c-99268f0f4ca5" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="e8f7e5dd-360e-43aa-b84e-101f55d437c0" name="Application Quit" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="66cb61a0-1beb-4245-91ac-85543600c855" />
+            <objectFlowTargets>
+              <objectFlow Id="ebbd8752-919a-488a-9ba9-49f2739735a3" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityFinalNodeMoniker Id="15896584-38ee-4db7-b19f-ea84b8f2ca50" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="60d7cd6e-299a-49ef-92a1-2aa1ea039a76" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="30c85f72-539f-4ceb-9c51-4412c88237bc" name="2147483647" value="2147483647">
+                <elementDefinition Id="e4720274-340b-4e98-993a-ed19cff6ff5c" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="37c38b3b-3d76-4d2e-966e-83c5906ad9e1" name="User Logged out" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="f6105480-b310-4054-adc4-8640790eb5bf" />
+            <objectFlowTargets>
+              <objectFlow Id="276225c6-cf29-4e00-8856-1b4968dbdc26" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityFinalNodeMoniker Id="15896584-38ee-4db7-b19f-ea84b8f2ca50" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="59ed6c1a-2550-46f9-8f9a-fee951677cfd" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="f8315df6-0c21-49a0-9366-c8f02718cb9e" name="2147483647" value="2147483647">
+                <elementDefinition Id="0b5b6e39-b14b-45f8-ae99-b40e3fedf32d" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="fc71b0c4-8e38-48b0-ab7e-e01361c87574" name="ModelingProject1">
+    <elementDefinition Id="a6862fcd-6e7d-40e6-90a2-0d2253d6942d" />
+  </package>
+</activityRootModel>

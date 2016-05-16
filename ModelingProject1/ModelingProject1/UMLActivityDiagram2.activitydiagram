@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="6e010745-96a8-419a-8039-aca9825fcc6e" name="MainScreen" linkedPackageId="f64d4d5b-138b-4bbd-b02c-f7eee08590a7" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="bebc9387-bcac-49ce-9b5f-410ed2426b64">
+      <elementDefinition Id="ea063386-9286-4a43-b7bc-19be520f3753" />
+      <body>Has the record already been submitted</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="c8bfce47-e7e6-48ba-9d1a-1fd89b11d0c8" LastKnownName="Decision1" />
+      </annotatedElements>
+    </comment>
+    <comment Id="4ec27afa-5639-4ee6-bef8-cb10b51725af">
+      <elementDefinition Id="1177d953-9c87-428a-b4cc-4b555ac3180a" />
+      <body>Yes</body>
+    </comment>
+    <comment Id="26c07f0c-fce8-420b-8744-6e445bac5203">
+      <elementDefinition Id="5a186fd9-8946-462e-bd0f-98cacdd32412" />
+      <body>No</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="3c056df1-9e99-44a3-a07c-073f97c3e632">
+      <profileInstance Id="329137f7-1470-4e5c-9e06-857455bd4e61" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="deb812fc-b25d-4a68-b615-8d7fd89b8f82">
+      <profileInstance Id="6d3c6cbc-e4dd-459e-9f68-56f9fe8b7a9c" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="04c49064-56c6-451a-9d44-04d91177cace" name="MainScreen" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="9160fd09-148c-4ce7-a88a-aa1da3dbc67b" />
+        <nodes>
+          <initialNode Id="668d2221-454b-4663-a3dd-6d51c119b16e" name="Initial1" isLeaf="false">
+            <elementDefinition Id="80be232f-f4c4-459b-9ef6-6d502948549c" />
+            <flowNodeTargets>
+              <controlFlow Id="3eb6bad1-97d2-493d-a61d-f4ca92e2f8a5" isLeaf="false">
+                <decisionNodeMoniker Id="4bd61846-ed75-4934-972f-79c8cb1d5632" LastKnownName="Decision4" />
+                <elementDefinition Id="b7b9004e-a55f-41f8-b92a-e59ecaa7197a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="56f32483-7397-4b8c-a867-839bfc1df25a" name="User clicks on existing database" isLeaf="false">
+            <elementDefinition Id="784d3065-336c-4781-b238-5eac1ea3754b" />
+            <flowNodeTargets>
+              <controlFlow Id="e6e3fb40-732d-42d9-8aa4-8cffe36d96ea" isLeaf="false">
+                <decisionNodeMoniker Id="90ff3217-5a06-4216-9694-ce873a6491e6" LastKnownName="Decision2" />
+                <elementDefinition Id="bc2f5cbe-3315-4bb9-806d-266d2050a0c4" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="625545cf-4ddf-40fd-8031-37c061731c74" name="User clicks Add Record" isLeaf="false">
+            <elementDefinition Id="6692ca7f-48db-4499-9b69-cf43a7629c4a" />
+            <flowNodeTargets>
+              <controlFlow Id="f69c1490-d450-42be-b1a7-dc94133c9baa" isLeaf="false">
+                <opaqueActionMoniker Id="a529e3a2-dab3-4104-8b38-d422b0aa4a94" LastKnownName="Activity: Add/EditRecord" />
+                <elementDefinition Id="4e81bf26-9a74-4277-b838-bf2238631fca" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e1f25870-6619-4d34-bc61-41cefcd014d8" name="User clicks View My Records" isLeaf="false">
+            <elementDefinition Id="2fd21ee2-cbbc-40e0-82f9-da513266ad98" />
+            <flowNodeTargets>
+              <controlFlow Id="ad51beb0-bc62-4ddc-8bbd-7d4c2d79a4b8" isLeaf="false">
+                <opaqueActionMoniker Id="60a70303-b7cd-42fc-9523-47e0c2c2c30e" LastKnownName="User clicks on a record for that database" />
+                <elementDefinition Id="fe43074e-feb7-4057-90e2-511ef7ca5c23" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="60a70303-b7cd-42fc-9523-47e0c2c2c30e" name="User clicks on a record for that database" isLeaf="false">
+            <elementDefinition Id="375ab23d-7cfd-4187-96b1-f96523a6ac98" />
+            <flowNodeTargets>
+              <controlFlow Id="dc34bd1e-3e41-4c7b-90bf-352fcd9ba242" isLeaf="false">
+                <decisionNodeMoniker Id="c8bfce47-e7e6-48ba-9d1a-1fd89b11d0c8" LastKnownName="Decision1" />
+                <elementDefinition Id="5fd48a51-715e-4a72-8c15-1feedeef9690" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="c8bfce47-e7e6-48ba-9d1a-1fd89b11d0c8" name="Decision1" isLeaf="false">
+            <elementDefinition Id="49342fb8-2197-46f0-bc94-fbccfab476ec" />
+            <flowNodeTargets>
+              <controlFlow Id="f7b4c1ea-b0c7-49bf-bf83-d752c22bdc45" isLeaf="false">
+                <opaqueActionMoniker Id="a529e3a2-dab3-4104-8b38-d422b0aa4a94" LastKnownName="Activity: Add/EditRecord" />
+                <elementDefinition Id="8f31736a-ab4a-49ba-b5f5-aa62df8ff76f" />
+              </controlFlow>
+              <controlFlow Id="2855d942-844b-430e-900f-a53ee2b5caa9" isLeaf="false">
+                <opaqueActionMoniker Id="c9af9c10-f16b-41cc-a688-09414a1e7fd9" LastKnownName="User clicks tick button" />
+                <elementDefinition Id="37d6d723-9d18-4e8c-889a-a460ffd513a7" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="a529e3a2-dab3-4104-8b38-d422b0aa4a94" name="Activity: Add/EditRecord" isLeaf="false">
+            <elementDefinition Id="8cb8c107-2d5c-48ab-a0ff-679ec2ca83ba" />
+            <flowNodeTargets>
+              <controlFlow Id="14fdad6a-a63a-42a3-95e7-e4f50744f63d" isLeaf="false">
+                <decisionNodeMoniker Id="8a2485ed-27b3-4c30-946e-f30b889dc118" LastKnownName="Decision3" />
+                <elementDefinition Id="a930bde9-41b6-4ee4-86b4-7fe8156f210c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="c9af9c10-f16b-41cc-a688-09414a1e7fd9" name="User clicks tick button" isLeaf="false">
+            <elementDefinition Id="cce28136-0018-41d2-9d74-8b7d9eb26812" />
+            <flowNodeTargets>
+              <controlFlow Id="8a461257-32f7-4e8b-8f55-e7c21460cd02" isLeaf="false">
+                <activityFinalNodeMoniker Id="bc01cd29-1872-44d3-b1f9-d31467683ee2" LastKnownName="ActivityFinal2" />
+                <elementDefinition Id="3d800122-d0fe-40d1-b766-e0358d3f69a8" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="90ff3217-5a06-4216-9694-ce873a6491e6" name="Decision2" isLeaf="false">
+            <elementDefinition Id="8d4c4910-3c3f-454c-b940-68587e0f58a6" />
+            <flowNodeTargets>
+              <controlFlow Id="c6dbad55-5c97-4951-b1cc-a665132ec97f" isLeaf="false">
+                <opaqueActionMoniker Id="625545cf-4ddf-40fd-8031-37c061731c74" LastKnownName="User clicks Add Record" />
+                <elementDefinition Id="1447d11e-7b5e-4900-a3c1-92ba32e5527f" />
+              </controlFlow>
+              <controlFlow Id="968cad77-35fd-4b4f-9ab3-9fd7e80f9a8a" isLeaf="false">
+                <opaqueActionMoniker Id="e1f25870-6619-4d34-bc61-41cefcd014d8" LastKnownName="User clicks View My Records" />
+                <elementDefinition Id="ce07a8ed-5daa-40a6-acbc-1f58f8dbb997" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <decisionNode Id="8a2485ed-27b3-4c30-946e-f30b889dc118" name="Decision3" isLeaf="false">
+            <elementDefinition Id="c8c794af-a90b-419e-9026-949429a9f6aa" />
+            <flowNodeTargets>
+              <controlFlow Id="a91046e9-a971-4fd5-b990-db0a073297f3" isLeaf="false">
+                <opaqueActionMoniker Id="4409a7fe-6ec1-4681-aed7-aaaa19ebe7bd" LastKnownName="User clicks tick button" />
+                <elementDefinition Id="8770e31f-22ea-4b8f-96c9-a71e5f3cc04c" />
+              </controlFlow>
+              <controlFlow Id="3645971c-0f87-48f1-8e74-2479e0a423f3" isLeaf="false">
+                <opaqueActionMoniker Id="d58c6ed5-df69-4c66-9bec-61c5b21b367a" LastKnownName="User clicks cross button" />
+                <elementDefinition Id="432f97f9-69e8-40c5-936a-28afb1f1b85b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="4409a7fe-6ec1-4681-aed7-aaaa19ebe7bd" name="User clicks tick button" isLeaf="false">
+            <elementDefinition Id="34f493df-4a1e-4ea3-a32c-db9aa3062e2b" />
+            <objectFlowTargets>
+              <objectFlow Id="3304f44c-e426-4576-b478-adb3b002b265" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="bafae02b-e2ba-4c4d-9c63-16f710d0997d" LastKnownName="Changes saved" />
+                <elementDefinition Id="1cd70c7c-7b8e-40ca-ab1e-a04207eacca9" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <opaqueAction Id="d58c6ed5-df69-4c66-9bec-61c5b21b367a" name="User clicks cross button" isLeaf="false">
+            <elementDefinition Id="4f371d0b-c6f7-475c-ae7d-db570659b9c1" />
+            <objectFlowTargets>
+              <objectFlow Id="e4c54c6a-f33c-4d17-8d96-633b1a228c9a" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="396da367-c9a9-407c-af27-96814e8f397e" LastKnownName="Changes discarded" />
+                <elementDefinition Id="6474523d-5eee-483f-bf61-f2414fb89188" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <objectNode Id="bafae02b-e2ba-4c4d-9c63-16f710d0997d" name="Changes saved" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="49c99795-98e9-4a77-ae8c-6857d9ea9b5f" />
+            <objectFlowTargets>
+              <objectFlow Id="d88bbe79-83df-4a32-88f6-bc0299da1d82" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityFinalNodeMoniker Id="bc01cd29-1872-44d3-b1f9-d31467683ee2" LastKnownName="ActivityFinal2" />
+                <elementDefinition Id="09ce41c9-bb7e-4cc6-bab7-b4d4fa0a62f7" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="d1692660-2be8-4e74-8faa-31820dabfa38" name="2147483647" value="2147483647">
+                <elementDefinition Id="b9892711-4acb-4f43-96df-8b1fdb44543f" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="396da367-c9a9-407c-af27-96814e8f397e" name="Changes discarded" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="3d059816-be55-4305-8ff9-aca6baa20c5a" />
+            <objectFlowTargets>
+              <objectFlow Id="b598f011-2df5-4c64-b59b-6d989acd2721" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityFinalNodeMoniker Id="bc01cd29-1872-44d3-b1f9-d31467683ee2" LastKnownName="ActivityFinal2" />
+                <elementDefinition Id="30e3b94c-ba7d-4cb2-be0a-638178ca31a1" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="a1fc521d-12b4-4da5-a480-eb709033bc18" name="2147483647" value="2147483647">
+                <elementDefinition Id="706a13a9-9dcc-4344-9308-29c119797b4f" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <activityFinalNode Id="bc01cd29-1872-44d3-b1f9-d31467683ee2" name="ActivityFinal2" isLeaf="false">
+            <elementDefinition Id="32497f5d-2b4d-481a-a517-350f9eeaa306" />
+          </activityFinalNode>
+          <opaqueAction Id="d1fe5928-ab72-4b83-b76a-b50008caeade" name="User clicks on Add Database button" isLeaf="false">
+            <elementDefinition Id="0ae09e1f-8919-4246-a4dd-4cef0efa0ad2" />
+            <flowNodeTargets>
+              <controlFlow Id="a7ced118-920f-4c9a-b1b7-6faf4f3b3360" isLeaf="false">
+                <opaqueActionMoniker Id="bbb2f0fd-ad51-4265-878b-113368383455" LastKnownName="User chooses a database to add" />
+                <elementDefinition Id="c22d6e70-8bac-4dbb-8be1-b38910d817a0" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="4bd61846-ed75-4934-972f-79c8cb1d5632" name="Decision4" isLeaf="false">
+            <elementDefinition Id="325217af-b697-47af-a69e-1b9fa88b0aab" />
+            <flowNodeTargets>
+              <controlFlow Id="77af9f1d-8851-41d3-beee-1bde808975ff" isLeaf="false">
+                <opaqueActionMoniker Id="56f32483-7397-4b8c-a867-839bfc1df25a" LastKnownName="User clicks on existing database" />
+                <elementDefinition Id="7f94fc63-065d-4543-a953-a3acb599d190" />
+              </controlFlow>
+              <controlFlow Id="70c5b885-72c0-42b2-a294-31331f468455" isLeaf="false">
+                <opaqueActionMoniker Id="d1fe5928-ab72-4b83-b76a-b50008caeade" LastKnownName="User clicks on Add Database button" />
+                <elementDefinition Id="ebb2c2d6-8782-44bd-9474-a9b0381bf213" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="bbb2f0fd-ad51-4265-878b-113368383455" name="User chooses a database to add" isLeaf="false">
+            <elementDefinition Id="2a9a67db-9207-49ae-8836-3ac6806a2ad2" />
+            <objectFlowTargets>
+              <objectFlow Id="84e580e1-8a5b-447e-a565-1f2763dfce78" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="85076ef6-22e9-4c76-9f6b-7ff1591efed1" LastKnownName="Database added to profile" />
+                <elementDefinition Id="ad12f6da-e688-4450-b486-66b7a2213ab4" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <objectNode Id="85076ef6-22e9-4c76-9f6b-7ff1591efed1" name="Database added to profile" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="de6ecc5b-fb45-40f2-a82e-ccb36ba08d09" />
+            <objectFlowTargets>
+              <objectFlow Id="e103abb7-717b-44ab-8b76-6cb50ef73978" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityFinalNodeMoniker Id="bc01cd29-1872-44d3-b1f9-d31467683ee2" LastKnownName="ActivityFinal2" />
+                <elementDefinition Id="b1c6a3b6-4999-4f63-9a5d-2a1aa0689c9f" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="12da6f2c-c1ed-41b2-833b-b5d8ea90dd77" name="2147483647" value="2147483647">
+                <elementDefinition Id="e9953026-592c-4fe0-acd2-9ed77bdf26a3" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="f64d4d5b-138b-4bbd-b02c-f7eee08590a7" name="ModelingProject1">
+    <elementDefinition Id="a6862fcd-6e7d-40e6-90a2-0d2253d6942d" />
+  </package>
+</activityRootModel>

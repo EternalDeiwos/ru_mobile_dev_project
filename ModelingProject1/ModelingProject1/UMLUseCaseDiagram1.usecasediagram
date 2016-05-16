@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="854d0858-7f21-40df-b5c3-6771d955b896" name="UMLUseCaseDiagram1" linkedPackageId="c64dc3ef-51d8-4ee7-8947-1794eb669da2" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="c9844a75-36d3-42e8-864a-8de4f4a7deb0">
+      <profileInstance Id="51e7a4b9-ba30-42c9-930e-e4bec0ca6cad" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="bc749819-7b50-4d52-b7fa-08b0ee30d81d">
+      <profileInstance Id="7d13ab5d-1f16-4a38-ae89-ad82c07b41aa" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="a2c5a1a3-4f87-45ae-8f61-39d029ddbde3" name="User" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f9f2675a-73e0-47a8-99d5-53736ebba3b8" />
+        <targetEnds>
+          <association Id="50000d65-3764-4cc9-bdc0-645f38fcacbd" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Login" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="2afac7e8-05c8-41b3-a491-44627fbbeea5" LastKnownName="Login" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ffef69e3-d74f-4959-9bcb-865e4f9ccc1e" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="c89eadd6-2e91-457e-9954-8fa30cac5a53" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2861e314-15f6-4ea7-aedd-971ee27b396f" name="Login" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c02376f9-7aaf-43e4-b207-41b87f96c2ed" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6b45516e-d141-4ba6-ab5b-b967bdffcff2" />
+          </association>
+          <association Id="515ba93f-765e-4071-8ee1-c63be62fee38" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Manage Databases" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="d3b70f3d-f032-4841-8213-824767f753cc" LastKnownName="Manage Databases" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="11c1eb91-ea26-4c4a-aead-36e7c1c5acfc" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ed8596b8-c2a7-4e08-9655-163748627508" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5f348dd1-f948-4155-9f29-8ec58afdf745" name="Manage Databases" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9af74e75-9a11-48fb-86be-e9d5f1cbf435" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9818700c-da28-49fe-af54-2e5918213ef3" />
+          </association>
+          <association Id="ee5e0695-e1a7-4a9a-bec2-d56955b05a2d" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Manage Records" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="4c2ac381-75b9-4f92-ab40-2228786c7503" LastKnownName="Manage Records" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d25f030a-d4fe-499e-9812-faca83dda42c" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="afe0c111-758e-43e0-b5a4-28c64fb1aae6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="362cddd5-3508-48d5-b7b5-d23d6f75a3c7" name="Manage Records" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="24fc9a7f-3bac-44b9-a8c8-ea7a68fc1509" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="34d19780-3d3e-4180-a163-98805260c995" />
+          </association>
+          <association Id="094e3d2e-eece-4ba9-8b1f-bb96803e6815" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Manage Settings" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="979881e5-64ab-4ac2-8bf5-b41661855bd6" LastKnownName="Manage Settings" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="11682f14-6952-4c87-b62b-672dc525350b" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="cf0d5384-924e-425a-b5e8-c98188c803ba" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ff36e3c8-439f-4558-ae19-e5dc2d194450" name="Manage Settings" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="aab108ce-75b6-49bb-bd05-eb2aadf0e2c3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="47459ec5-0407-4cf6-b595-f4f041e0d424" />
+          </association>
+          <association Id="c9afab7f-ec99-4497-b71e-22bf1a187ce4" isDerived="false" sourceEndRoleName="User" targetEndRoleName="View Help" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="adf9f1a0-0c10-461c-88c7-bfa1de866bef" LastKnownName="View Help" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="52c5a91b-468f-452d-8952-f0ae0f330a85" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0254117a-b2cd-46ba-aff9-f304db2bfb5c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="db70bbe5-e985-44af-91af-1b0fb7fddade" name="View Help" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="459518a0-f1eb-46be-8e90-2ad01024e894" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b667feb2-64a2-4d9b-94a3-bccd16d912f9" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="2afac7e8-05c8-41b3-a491-44627fbbeea5" name="Login" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="660fe5cd-1ebf-4970-97b3-6bf9e9b77c9f" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d3b70f3d-f032-4841-8213-824767f753cc" name="Manage Databases" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b12ff949-aab3-482c-9fcd-b76459b69271" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="4c2ac381-75b9-4f92-ab40-2228786c7503" name="Manage Records" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7d6cbfa3-a29c-4298-abf0-c753406ebd84" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="466b5fb1-e7b5-437c-a385-828c73d68a79" name="Add Database" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2806f4d4-0517-4e2a-a3bb-4b45ba2af148" />
+        <extendedCases>
+          <extend Id="d6a85f1e-6236-44ac-84aa-3d709d2b6f58">
+            <useCaseMoniker Id="d3b70f3d-f032-4841-8213-824767f753cc" LastKnownName="Manage Databases" />
+            <elementDefinition Id="efed4e46-c684-45d1-a822-98d1a9ffeead" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="ef340ff3-7956-42ad-b710-2705e4618b71" name="Add Record" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="626ea674-3dd3-4f26-a725-3c7b0254c14e" />
+        <extendedCases>
+          <extend Id="f8ae2e7b-6bb1-4c60-a518-5a48115de474">
+            <useCaseMoniker Id="4c2ac381-75b9-4f92-ab40-2228786c7503" LastKnownName="Manage Records" />
+            <elementDefinition Id="d10dca1b-c390-4b75-bbc0-d1fff1f9bca6" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="548f5738-3662-4323-994a-e11d71651609" name="Submit Record" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="126f3d49-304e-4f18-9dbe-ce2664952dfb" />
+        <extendedCases>
+          <extend Id="98f255c0-5c18-43e0-bfca-74cf30a2db4b">
+            <useCaseMoniker Id="ef340ff3-7956-42ad-b710-2705e4618b71" LastKnownName="Add Record" />
+            <elementDefinition Id="5b4081f3-dcdd-4e82-8d0b-dcf5aa43deef" />
+          </extend>
+          <extend Id="12290fca-41f3-4ec8-89ef-195197b2b15d">
+            <useCaseMoniker Id="fbabf73c-ac45-474b-906c-65b7ce2c8e7d" LastKnownName="View/Edit Record" />
+            <elementDefinition Id="5edff122-b569-42b5-a1d0-fb743a0408ca" />
+          </extend>
+        </extendedCases>
+        <additions>
+          <include Id="0effff56-914c-4330-bce1-bf620bdf20b7">
+            <useCaseMoniker Id="a8241bfd-a763-4a99-90d7-3ae36f8bdb23" LastKnownName="Verify Record" />
+            <elementDefinition Id="db108819-a46f-4b71-9a72-b064f6988bef" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="fbabf73c-ac45-474b-906c-65b7ce2c8e7d" name="View/Edit Record" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="26be5bbe-452b-439f-a20f-e457bab0e637" />
+        <extendedCases>
+          <extend Id="43ae46d0-d388-41e6-b638-acf85ed95c19">
+            <useCaseMoniker Id="4c2ac381-75b9-4f92-ab40-2228786c7503" LastKnownName="Manage Records" />
+            <elementDefinition Id="7be07353-d7cf-4658-b465-a91946f6052a" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="979881e5-64ab-4ac2-8bf5-b41661855bd6" name="Manage Settings" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="6e4d970c-64db-4d61-a557-fafcefb59149" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="adf9f1a0-0c10-461c-88c7-bfa1de866bef" name="View Help" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e0f47ef6-8d78-459f-a26a-b77a57f623bf" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="a8241bfd-a763-4a99-90d7-3ae36f8bdb23" name="Verify Record" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9b56cd75-0ccc-4347-806e-d9de29bd3463" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="c64dc3ef-51d8-4ee7-8947-1794eb669da2" name="ModelingProject1">
+    <elementDefinition Id="a6862fcd-6e7d-40e6-90a2-0d2253d6942d" />
+  </package>
+</useCaseModelRoot>
