@@ -92,18 +92,42 @@ BCOR5mm, % Binding correction
 %	CONTENT
 %----------------------------------------------------------------------------------------
 
-\section{Introduction} % (fold)
-\label{sec:introduction}
-
-
-
-% section introduction (end)
 
 \section{Application Description} % (fold)
 \label{sec:application_description}
+\subsection{Assumptions}
+\label{sub:assumptions}
 
-% section application_description (end)
+\begin{itemize}
+\item Users will be using an Android device with the Jellybean operating system or newer.
+\item Users will have an existing account on the Animal Demography Unit (ADU).
+\item Users have at minimum a basic understanding of how to operate a smart phone.
+\end{itemize}
+% section assumption (end)
 
+\subsection{Target Audience}
+\label{sub:target_audience}
+Existing members of the ADU who have access to an Android smart phone.
+% section target_audience (end)
+
+\subsection{Context}
+\label{sub:context}
+The ADU is an online database of fauna and flora sightings from around the world, but predominantly South Africa. The idea behind the database is to maintain digital records rather than physical ones, thus preventing the need of killing the specimen for archiving. The current system requires manual entry of data including location, date, specimen details and manual upload of media. This is an extremely slow and inefficient way of capturing new entries, and is prone to human error. This is where the idea of having an Android application which can easily generate records by auto completing much of the data required, and simplifying the capture of other data such as images and sounds. 
+% section context (end)
+
+\subsection{Required Features}
+\label{sub:required_features}
+The application should be able to:
+\begin{itemize}
+\item Allow the user to authenticate into the application with the same credentials as their ADU account.
+\item Allow the user to create new record for any one of the ADU databases, the records should hold the exact same information as they would if they were created on the ADU.
+\item Automatically complete data where possible, such as location and date.
+\item Allow the user to override any auto completed data.
+\item Allow the user to submit completed record to the ADU for verification.
+\item Allow the user to edit/delete any non-submitted records and view any previously submitted records.
+\item Allow the user the option to only upload records when on wi-fi.
+\end{itemize}
+% section context (required_features)
 \section{Prototype} % (fold)
 \label{sec:prototype}
 
