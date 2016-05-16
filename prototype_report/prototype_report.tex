@@ -95,6 +95,7 @@ BCOR5mm, % Binding correction
 
 \section{Application Description} % (fold)
 \label{sec:application_description}
+
 \subsection{Assumptions}
 \label{sub:assumptions}
 
@@ -103,21 +104,28 @@ BCOR5mm, % Binding correction
 \item Users will have an existing account on the Animal Demography Unit (ADU).
 \item Users have at minimum a basic understanding of how to operate a smart phone.
 \end{itemize}
-% section assumption (end)
+
+% subsection assumption (end)
 
 \subsection{Target Audience}
 \label{sub:target_audience}
+
 Existing members of the ADU who have access to an Android smart phone.
-% section target_audience (end)
+
+% subsection target_audience (end)
 
 \subsection{Context}
 \label{sub:context}
+
 The ADU is an online database of fauna and flora sightings from around the world, but predominantly South Africa. The idea behind the database is to maintain digital records rather than physical ones, thus preventing the need of killing the specimen for archiving. The current system requires manual entry of data including location, date, specimen details and manual upload of media. This is an extremely slow and inefficient way of capturing new entries, and is prone to human error. This is where the idea of having an Android application which can easily generate records by auto completing much of the data required, and simplifying the capture of other data such as images and sounds. 
-% section context (end)
+
+% subsection context (end)
 
 \subsection{Required Features}
 \label{sub:required_features}
+
 The application should be able to:
+
 \begin{itemize}
 \item Allow the user to authenticate into the application with the same credentials as their ADU account.
 \item Allow the user to create new record for any one of the ADU databases, the records should hold the exact same information as they would if they were created on the ADU.
@@ -127,7 +135,9 @@ The application should be able to:
 \item Allow the user to edit/delete any non-submitted records and view any previously submitted records.
 \item Allow the user the option to only upload records when on wi-fi.
 \end{itemize}
-% section context (required_features)
+
+% section required_features (required_features)
+
 % section application_description (end)
 
 \section{Feedback} % (fold)
@@ -155,7 +165,8 @@ From what we were able to salvage from our existing prototype, \textit{Prof. Pet
 
 \begin{itemize}
 \item The use of icons to select the database on the home screen (Figure~\vref{wire:home}) seems to be a different approach; he seemed unsure of how it would work and stipulated that it would be difficult to use if icons for all of the databases were present on the page, as most of the users seem to restrict themselves to a handful of complimentary databases. We have therefore decided to keep the icon-based home screen -- as this decreases the amount of manual text entry on the part of the user when submitting a record -- and instead have added a process for adding icons to the home screen from the list of existing databases. Due to the fact that we have not yet recieved API documentation the list of databases; the list (Figure~\vref{wire:add_db}) will be built statically.
-\item The addition of the ``My Records'' screen (Figure~\vref{wire:records_list}) received positive feedback as it seems that it is fairly difficult, when batch uploading a large amount images, to remember where exactly one is in the process. Initially the plan was have one screen that contained all the records submitted for all the databases the user contributes to, and records were distinguished by name, date and an icon showing which database the submission was contributing to.
+\item The addition of the ``My Records'' screen (Figure~\vref{wire:records_list}) received positive feedback as it seems that it is fairly difficult, when batch uploading a large amount images, to remember where exactly one is in the process. Initially the plan was have one screen that contained all the records submitted for all the databases the user contributes to, and records were distinguished by name, date and an icon showing which database the submission was contributing to. In order to make it easier for the user to remember; we changed this to be a separate records list per database and changed the icon on the left of the record heading to show the first image of that submission. Once again, due to the fact that we do not have any API documentation for the existing system as of yet, this list will not be definitive as the data it contains will be persisted locally on the device and will only contain the submissions that have been made from that particular device. There are no plans to add a ``backup'' feature for this.
+\item Regarding the editing and submission of records, we suggested the use of Google's ``Reverse Geocoding'' Service\footnote{\url{https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse}} which would allow us to gain location data from GPS coordinates. Our suggestion received positive feedback however the point was made that it is absolutely necessary for the user to confirm the details from this process. As such; we added fields to manually edit the closest town, province and country should the user wish to.
 \end{itemize}
 
 Some of these changes have been reflected in this document and others have not due to time restrictions. The changes that are not reflected in this document will hopefully be present in the final product if there is sufficient time to include them.
@@ -167,12 +178,9 @@ Some of these changes have been reflected in this document and others have not d
 \section{Prototype} % (fold)
 \label{sec:prototype}
 
+
+
 % section prototype (end)
-
-\section{Conclusion} % (fold)
-\label{sec:conclusion}
-
-% section conclusion (end)
 
 \newpage
 
