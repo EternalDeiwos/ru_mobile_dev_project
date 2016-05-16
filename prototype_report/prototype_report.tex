@@ -104,6 +104,40 @@ BCOR5mm, % Binding correction
 
 % section application_description (end)
 
+\section{Feedback} % (fold)
+\label{sec:feedback}
+
+\subsection{False Assumptions} % (fold)
+\label{sub:false_assumptions}
+
+After a conversation with \textit{Prof. Craig Peter} it became clear that our initial assumptions of how the system should operate were completely incorrect; in particular the following assumptions that we were operating under:
+
+\begin{itemize}
+\item The backend of the system would be completely separate to the existing system and would need to be built separately. This assumption was based on the fact that it was highly unlikely that the system administrators of the ADU would allow us (students) to interact and effect possibly breaking changes to a production system. Since the initial prototype was created, it seems that there will be a development system created that will be functionally equivalent to the production system for which we will be given API documentation and the relevant credentials to access. As of the time of writing, we have not yet been given such documentation which may or may not affect how the final product will operate when compared to this prototype document.
+\item We would be able to add functionality to the existing system. This stems from the above point where we would be creating our own backend and could therefore define additional features. Ideas such as live communication with moderators regarding submissions, improved search functionality by indexing records through the use of ``tags'', the use of notifications and correcting database schema errors such as the restriction of three images to a submission are all therefore useless for the design of this application due to lack of access to the backend system. According to \textit{Prof. Peter} The restriction of the number of images per submission often leads to users submitting multiple records to cover all of the images the user has captured and the existing system has no way to link them. It is impossible to tell without more information, however this error is most likely an error in the database schema that has not been designed to conform to the 3\textsuperscript{rd} normal form.
+\item The document containing a list of requests from \textit{Prof. Peter} showed additional features that were not supported by the existing system. Due to us operating under the above assumptions; this further reinforced that we would be able to implement these additional features when creating our own backend. Now that we know differently; it is clear that some of the requirements that were requested will be impossible to implement without modification of the existing system and we will therefore not be able to meet them.
+\end{itemize}
+
+The above false assuptions have therefore since required us to completely redesign the system which is what is reflected in this document.
+
+% subsection false_assumptions (end)
+
+\subsection{Changes to the System} % (fold)
+\label{sub:changes_to_the_system}
+
+From what we were able to salvage from our existing prototype, \textit{Prof. Peter} had the following comments:
+
+\begin{itemize}
+\item The use of icons to select the database on the home screen (Figure~\vref{wire:home}) seems to be a different approach; he seemed unsure of how it would work and stipulated that it would be difficult to use if icons for all of the databases were present on the page, as most of the users seem to restrict themselves to a handful of complimentary databases. We have therefore decided to keep the icon-based home screen -- as this decreases the amount of manual text entry on the part of the user when submitting a record -- and instead have added a process for adding icons to the home screen from the list of existing databases. Due to the fact that we have not yet recieved API documentation the list of databases; the list (Figure~\vref{wire:add_db}) will be built statically.
+\item The addition of the ``My Records'' screen (Figure~\vref{wire:records_list}) received positive feedback as it seems that it is fairly difficult, when batch uploading a large amount images, to remember where exactly one is in the process. Initially the plan was have one screen that contained all the records submitted for all the databases the user contributes to, and records were distinguished by name, date and an icon showing which database the submission was contributing to.
+\end{itemize}
+
+Some of these changes have been reflected in this document and others have not due to time restrictions. The changes that are not reflected in this document will hopefully be present in the final product if there is sufficient time to include them.
+
+% subsection changes_to_the_system (end)
+
+% section feedback (end)
+
 \section{Prototype} % (fold)
 \label{sec:prototype}
 
