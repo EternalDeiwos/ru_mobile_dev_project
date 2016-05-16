@@ -30,6 +30,12 @@ BCOR5mm, % Binding correction
 
 \input{structure.tex} % Include the structure.tex file which specified the document structure and layout
 
+\usepackage{appendix}
+% \usepackage{float}
+% \usepackage{subfig}
+\usepackage{caption}
+\usepackage{subcaption}   % handles objects not covered by caption
+
 \hyphenation{Fortran hy-phen-ation} % Specify custom hyphenation points in words with dashes where you would like hyphenation to occur, or alternatively, don't put any dashes in a word to stop hyphenation altogether
 
 %----------------------------------------------------------------------------------------
@@ -89,6 +95,8 @@ BCOR5mm, % Binding correction
 \section{Introduction} % (fold)
 \label{sec:introduction}
 
+
+
 % section introduction (end)
 
 \section{Application Description} % (fold)
@@ -106,6 +114,8 @@ BCOR5mm, % Binding correction
 
 % section conclusion (end)
 
+\newpage
+
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
@@ -116,6 +126,127 @@ BCOR5mm, % Binding correction
 
 % \bibliography{sample.bib} % The file containing the bibliography
 
+% \newpage
+
 %----------------------------------------------------------------------------------------
+% APPENDICES
+%----------------------------------------------------------------------------------------
+
+\begin{appendices}
+
+\section{Wireframes} % (fold)
+\label{sec:wireframes}
+
+\subsection{Login} % (fold)
+\label{sub:login}
+
+\begin{figure}[htb]
+\centering 
+\includegraphics[width=.35\columnwidth]{LoginScreen} 
+\caption{Login Screen Wireframe} % The text in the square bracket is the caption for the list of figures while the text in the curly brackets is the figure caption
+\label{wire:login} 
+\end{figure}
+
+% subsection login (end)
+
+\subsection{Home} % (fold)
+\label{sub:home}
+
+\begin{figure}[htb]
+\centering 
+\includegraphics[width=.65\columnwidth]{HomeScreen} 
+\caption{Home Screen Wireframe}
+\label{wire:home} 
+\end{figure}
+
+\begin{figure}[htb]
+\centering 
+\includegraphics[width=.35\columnwidth]{AddDBScreen} 
+\caption{Add Database Shortcut Screen Wireframe} 
+\label{wire:add_db} 
+\end{figure}
+
+% subsection home (end)
+
+\newpage
+
+\subsection{Settings} % (fold)
+\label{sub:settings}
+
+\begin{figure}[htb]
+\centering 
+\includegraphics[width=.35\columnwidth]{SettingsScreen} 
+\caption{Settings Screen Wireframe} 
+\label{wire:settings} 
+\end{figure}
+
+% subsection settings (end)
+
+\newpage
+
+\subsection{Help} % (fold)
+\label{sub:help}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\columnwidth}
+  \centering
+  \includegraphics[width=.8\textwidth]{HelpHomeScreen}
+  \caption{Select Help Topic Screen}
+  \label{wire:help_home}
+\end{subfigure}%
+\begin{subfigure}{.5\columnwidth}
+  \centering
+  \includegraphics[width=.8\textwidth]{HelpTopicScreen}
+  \caption{View Help Topic Screen}
+  \label{wire:help_topic}
+\end{subfigure}
+\caption{User Help Wireframes}
+\label{wire:help}
+\end{figure}
+
+% subsection help (end)
+
+\newpage
+
+\subsection{Record} % (fold)
+\label{sub:record}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{.475\textwidth}
+  \centering
+  \includegraphics[width=.8\textwidth]{ViewRecordsScreen}
+  \caption{Record List Screen Wireframe}
+  \label{wire:records_list}
+\end{subfigure}
+\begin{subfigure}[b]{.475\textwidth}
+  \centering
+  \includegraphics[width=.8\textwidth]{AddEditRecordLocation}
+  \caption{Record Location Tab Wireframe}
+  \label{wire:record_loc}
+\end{subfigure}
+\quad
+\begin{subfigure}[b]{.475\textwidth}
+  \centering
+  \includegraphics[width=.75\textwidth]{AddEditRecordSpecimen}
+  \caption{Record Specimen Tab Wireframe}
+  \label{wire:record_specimen}
+\end{subfigure}
+\begin{subfigure}[b]{.475\textwidth}
+  \centering
+  \includegraphics[width=.8\textwidth]{AddEditRecordMedia}
+  \caption{Record Media Tab Wireframe}
+  \label{wire:record_media}
+\end{subfigure}
+\caption{Record List and Detail Wireframes}
+\label{wire:help}
+\end{figure}
+
+% subsection record (end)
+
+% section wireframes (end)
+
+\end{appendices}
 
 \end{document}
