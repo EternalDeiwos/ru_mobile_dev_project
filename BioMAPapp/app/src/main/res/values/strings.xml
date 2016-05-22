@@ -13,4 +13,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="userName">Name</string>
+    <string name="userADU">abc123</string>
+    <string name="AddDatabaseButton">Add Database</string>
 </resources>
