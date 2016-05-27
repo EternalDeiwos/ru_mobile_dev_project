@@ -54,11 +54,11 @@ public class SelectDBActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_select_db);
 
         custom_database_list adapter = new
                 custom_database_list(SelectDBActivity.this, web, imageId);
-        list=(ListView)findViewById(R.id.listView);
+        list=(ListView)findViewById(R.id.databases);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

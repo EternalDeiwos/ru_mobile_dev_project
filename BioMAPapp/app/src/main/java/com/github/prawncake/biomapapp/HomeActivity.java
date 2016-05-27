@@ -1,5 +1,6 @@
 package com.github.prawncake.biomapapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,6 +24,7 @@ public class HomeActivity extends BaseActivity {
 
     public void AddDatabaseButtonClick(View view)
     {
-        //TODO: Open Database screen
+        Intent intent = new Intent(this, SelectDBActivity.class);
+        startActivityForResult(intent, 2);
     }
 }
