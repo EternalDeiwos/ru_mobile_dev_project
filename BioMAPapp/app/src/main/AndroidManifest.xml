@@ -13,10 +13,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
-
-        <!--
-            <activity
-            android:name=".LoginActivity"
+        <activity
+            android:name="com.github.prawncake.biomapapp.HomeActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,10 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        -->
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".SelectDBActivity"></activity>
+        <activity android:name="com.github.prawncake.biomapapp.SettingsActivity" />
+        <activity android:name="com.github.prawncake.biomapapp.SelectDBActivity"></activity>
+        <activity android:name="com.github.prawncake.biomapapp.HelpActivity"></activity>
     </application>
 
 </manifest>

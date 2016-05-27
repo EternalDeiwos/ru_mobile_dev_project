@@ -1,4 +1,4 @@
-package eternaldeiwos.github.com.biomapapp;
+package com.github.prawncake.biomapapp;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import eternaldeiwos.github.com.biomapapp.R;
 
 /**
  * Created by g11f0364 on 2016-05-22.

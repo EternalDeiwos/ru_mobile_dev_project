@@ -1,11 +1,12 @@
-package eternaldeiwos.github.com.biomapapp;
+package com.github.prawncake.biomapapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import eternaldeiwos.github.com.biomapapp.R;
 
 public class SelectDBActivity extends BaseActivity
 {

@@ -1,7 +1,9 @@
-package eternaldeiwos.github.com.biomapapp;
+package com.github.prawncake.biomapapp;
 
 import android.os.Bundle;
 import android.view.View;
+
+import eternaldeiwos.github.com.biomapapp.R;
 
 public class HomeActivity extends BaseActivity {
 
