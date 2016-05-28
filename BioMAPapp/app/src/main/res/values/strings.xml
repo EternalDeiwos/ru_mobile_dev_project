@@ -15,5 +15,5 @@
     </string>
     <string name="userName">Name</string>
     <string name="userADU">abc123</string>
-    <string name="AddDatabaseButton">Add Database</string>
+    <string name="AddDatabaseButton">Add Database (Temp: Test API)</string>
 </resources>

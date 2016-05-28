@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/userName"
-        android:id="@+id/textView2"
+        android:id="@+id/nameField"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -43,9 +43,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/userADU"
-        android:id="@+id/textView4"
+        android:id="@+id/aduField"
         android:layout_alignTop="@+id/textView3"
-        android:layout_alignStart="@+id/textView2" />
+        android:layout_alignStart="@+id/nameField" />
 
     <ListView
         android:layout_width="wrap_content"
