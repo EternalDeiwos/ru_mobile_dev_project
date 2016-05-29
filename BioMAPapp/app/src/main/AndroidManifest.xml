@@ -52,6 +52,12 @@
             <meta-data android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator"/>
         </service>
+        <activity android:name="com.github.prawncake.biomapapp.SelectDBActivity"/>
+        <activity android:name="com.github.prawncake.biomapapp.HelpActivity" />
+        <activity
+            android:name="com.github.prawncake.biomapapp.CreateRecordActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name="com.github.prawncake.biomapapp.ViewRecordsActivity"></activity>
     </application>
 
 </manifest>

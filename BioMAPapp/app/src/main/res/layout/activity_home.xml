@@ -10,6 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.github.prawncake.biomapapp.HomeActivity">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,5 +64,13 @@
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true"
         android:onClick="AddDatabaseButtonClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clickDBTest"
+        android:id="@+id/button4"
+        android:layout_alignTop="@+id/button"
+        android:layout_toEndOf="@+id/button" />
 
 </RelativeLayout>

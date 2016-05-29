@@ -56,6 +56,7 @@ public class SelectDBActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_db);
 
+
         custom_database_list adapter = new
                 custom_database_list(SelectDBActivity.this, web, imageId);
         list=(ListView)findViewById(R.id.databases);

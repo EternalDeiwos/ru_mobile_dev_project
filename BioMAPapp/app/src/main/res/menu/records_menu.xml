@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.github.prawncake.biomapapp.HomeActivity">
+        <item
+            android:id="@+id/newRecord_menu"
+            android:title="New Record"/>
+        <item
+            android:id="@+id/viewRecord_menu"
+            android:title="View My Record"/>
+        <item
+            android:id="@+id/remove_menu"
+            android:title="Remove"/>
+</menu>

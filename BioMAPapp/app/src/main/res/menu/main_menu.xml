@@ -3,13 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.github.prawncake.biomapapp.BaseActivity">
-    <item
-        android:id="@+id/settings_menu"
-        android:title="Settings"/>
-    <item
-        android:id="@+id/help_menu"
-        android:title="Help"/>
-    <item
-        android:id="@+id/logout_menu"
-        android:title="Log out"/>
+
+        <item
+            android:id="@+id/settings_menu"
+            android:title="Settings"/>
+        <item
+            android:id="@+id/help_menu"
+            android:title="Help"/>
+
+        <item
+            android:id="@+id/logout_menu"
+            android:title="Log out"/>
+
 </menu>
+
+
+
+

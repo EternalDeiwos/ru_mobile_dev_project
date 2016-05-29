@@ -2,7 +2,10 @@ package com.github.prawncake.biomapapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -15,6 +18,9 @@ import com.github.eternaldeiwos.biomapapp.R;
 //This class acts as a base class to be included in any activity so that the menu items are all the same across all classes that inherit this.
 public class BaseActivity extends AppCompatActivity
 {
+    public final static int NO_HANDLER_NEEDED=100;
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -34,7 +40,7 @@ public class BaseActivity extends AppCompatActivity
                 return true;
             case R.id.help_menu:
                 intent = new Intent(this, HelpActivity.class);
-                startActivityForResult(intent,2);
+                startActivityForResult(intent,NO_HANDLER_NEEDED);
                 return true;
             case R.id.logout_menu:
                 intent = new Intent(this, AuthenticatorActivity.class);
@@ -60,11 +66,6 @@ public class BaseActivity extends AppCompatActivity
                 //TODO: Changes cancelled
                 Toast.makeText(this, "Changes to settings cancelled", Toast.LENGTH_LONG).show();
             }
-        }
-
-        if (requestCode == 2)
-        {
-            //TODO: Dont really think anything needs to happen here, returning from help screen
         }
     }
 }
