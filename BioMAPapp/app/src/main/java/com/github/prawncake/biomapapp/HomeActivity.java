@@ -1,5 +1,7 @@
 package com.github.prawncake.biomapapp;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,12 +12,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 //import com.github.eternaldeiwos.biomapapp.LoginActivity;
+import com.github.eternaldeiwos.biomapapp.Authenticator;
+import com.github.eternaldeiwos.biomapapp.AuthenticatorActivity;
+import com.github.eternaldeiwos.biomapapp.AuthenticatorService;
 import com.github.eternaldeiwos.biomapapp.model.Permission;
 import com.github.eternaldeiwos.biomapapp.model.Project;
 import com.github.eternaldeiwos.biomapapp.model.User;
 import com.github.eternaldeiwos.biomapapp.rest.RestProject;
 import com.github.eternaldeiwos.biomapapp.rest.RestUser;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import com.github.eternaldeiwos.biomapapp.R;

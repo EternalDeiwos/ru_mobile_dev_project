@@ -26,14 +26,15 @@ public class UserTypeAdapter extends TypeAdapter<User> {
         o = o.getAsJsonObject("registered");
         JsonObject status = o.getAsJsonObject("status");
         JsonObject data = o.getAsJsonObject("data");
+        boolean success = status.get("result").getAsString().equals("success");
 
         return new User(
-                status.get("result").getAsString().equals("success"),
-                status.get("token").getAsString(),
-                data.get("Name").getAsString(),
-                data.get("Surname").getAsString(),
-                data.get("Email").getAsString(),
-                data.get("ADUNumber").getAsString()
+                success,
+                success ? status.get("token").getAsString() : null,
+                success ? data.get("Name").getAsString() : null,
+                success ? data.get("Surname").getAsString() : null,
+                success ? data.get("Email").getAsString() : null,
+                success ? data.get("ADUNumber").getAsString() : null
         );
     }
 }

@@ -33,11 +33,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.eternaldeiwos.biomapapp.helper.HashHelper;
 import com.github.eternaldeiwos.biomapapp.model.User;
 import com.github.eternaldeiwos.biomapapp.rest.RestUser;
-import com.orm.SugarContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +52,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity implemen
     public static final String ARG_AUTH_TYPE = "auth_type";
     public static final String ARG_IS_ADDING_NEW_ACCOUNT = "new_account";
     public static final String ACCOUNT_TYPE = "com.github.eternaldeiwos.biomapapp";
+    public static final String AUTH_SUCCESSFUL = "auth_success";
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -83,7 +84,6 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity implemen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authenticator);
         // Set up the login form.
-        SugarContext.init(this);
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
@@ -337,18 +337,19 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity implemen
         @Override
         protected Intent doInBackground(Void... params) {
             User u = RestUser.getUser(mADUNumber, mEmail, HashHelper.hashMD5(mPassword));
-            try {
-                if (User.find(User.class, "adu_number = ?", mADUNumber).isEmpty()) u.save();
-            } catch (SQLiteException sqle) {
-                sqle.printStackTrace();
-            }
             String authtoken = u.token;
             final Intent response = new Intent();
+            if (!u.success) {
+                response.putExtra(AUTH_SUCCESSFUL, false);
+            } else {
+                response.putExtra(Authenticator.KEY_USER_NAME, u.name);
+                response.putExtra(Authenticator.KEY_USER_SURNAME, u.surname);
+                response.putExtra(AUTH_SUCCESSFUL, true);
+            }
             response.putExtra(AccountManager.KEY_ACCOUNT_NAME, mEmail);
             response.putExtra(AccountManager.KEY_ACCOUNT_TYPE, ACCOUNT_TYPE);
             response.putExtra(AccountManager.KEY_AUTHTOKEN, authtoken);
             response.putExtra(AccountManager.KEY_PASSWORD, mPassword);
-            response.putExtra(Authenticator.KEY_ADU_NUMBER, mADUNumber);
             return response;
         }
 
@@ -358,14 +359,25 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity implemen
             String accountPassword = intent.getStringExtra(AccountManager.KEY_PASSWORD);
             final Account account = new Account(accountName, intent.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE));
             if (getIntent().getBooleanExtra(ARG_IS_ADDING_NEW_ACCOUNT, false)) {
-                String authtoken = intent.getStringExtra(AccountManager.KEY_AUTHTOKEN);
-
-
-                mAccountManager.addAccountExplicitly(account, accountPassword, null);
-                mAccountManager.setAuthToken(account, ACCOUNT_TYPE, authtoken);
+                if (intent.getBooleanExtra(AUTH_SUCCESSFUL, true)) {
+                    String authtoken = intent.getStringExtra(AccountManager.KEY_AUTHTOKEN);
+                    mAccountManager.addAccountExplicitly(account, accountPassword, null);
+                    mAccountManager.setAuthToken(account, ACCOUNT_TYPE, authtoken);
+                    mAccountManager.setUserData(account, Authenticator.KEY_ADU_NUMBER, mADUNumber);
+                    mAccountManager.setUserData(account, Authenticator.KEY_USER_NAME, intent.getStringExtra(Authenticator.KEY_USER_NAME));
+                    mAccountManager.setUserData(account, Authenticator.KEY_USER_SURNAME, intent.getStringExtra(Authenticator.KEY_USER_SURNAME));
+                    mAccountManager.setUserData(account, Authenticator.KEY_USER_EMAIL, mEmail);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Invalid credentials", Toast.LENGTH_LONG).show();
+                    this.cancel(false);
+                    showProgress(false);
+                    mAuthTask = null;
+                    return;
+                }
             } else {
                 mAccountManager.setPassword(account, accountPassword);
             }
+
             setAccountAuthenticatorResult(intent.getExtras());
             setResult(RESULT_OK, intent);
             finish();

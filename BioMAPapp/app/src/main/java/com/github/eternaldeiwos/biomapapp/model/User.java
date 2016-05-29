@@ -1,17 +1,20 @@
 package com.github.eternaldeiwos.biomapapp.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import com.orm.SugarRecord;
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.content.Context;
 
-import java.io.IOException;
+import com.github.eternaldeiwos.biomapapp.Authenticator;
+import com.github.eternaldeiwos.biomapapp.AuthenticatorActivity;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by glinklater on 2016/05/28.
  */
 
-public class User extends SugarRecord {
+public class User {
     public boolean success = false;
     public String token;
     public String name;
@@ -33,5 +36,24 @@ public class User extends SugarRecord {
     @Override
     public String toString() {
         return this.name + " " + this.surname;
+    }
+
+    public static List<User> getFromAccountManger(Context context) {
+        AccountManager am = AccountManager.get(context);
+        Account[] accounts = am.getAccountsByType(AuthenticatorActivity.ACCOUNT_TYPE);
+        LinkedList<User> list = new LinkedList<>();
+
+        for (Account a : accounts) {
+            list.add(new User(
+                    true,
+                    am.getUserData(a, AccountManager.KEY_AUTHTOKEN),
+                    am.getUserData(a, Authenticator.KEY_USER_NAME),
+                    am.getUserData(a, Authenticator.KEY_USER_SURNAME),
+                    am.getUserData(a, Authenticator.KEY_USER_EMAIL),
+                    am.getUserData(a, Authenticator.KEY_ADU_NUMBER)
+            ));
+        }
+
+        return list;
     }
 }
