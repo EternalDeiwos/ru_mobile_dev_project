@@ -17,6 +17,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+import java.io.IOException;
+
 /**
  * Created by glinklater on 2016/05/27.
  */
@@ -60,6 +62,20 @@ public class RestUser {
     ) {
         Call<User> call = getInstance().getUser(API.API_KEY, adu_number, email, enc_password);
         call.enqueue(callback);
+    }
+
+    public static User getUser(
+            String adu_number,
+            String email,
+            String enc_password
+    ) {
+        Call<User> call = getInstance().getUser(API.API_KEY, adu_number, email, enc_password);
+        try {
+            return call.execute().body();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void getPrivileges(

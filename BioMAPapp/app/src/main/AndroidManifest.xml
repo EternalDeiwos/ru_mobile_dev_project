@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
 
     <application
         android:allowBackup="true"
@@ -24,13 +25,33 @@
             </intent-filter>
         </activity>
         <activity android:name="com.github.prawncake.biomapapp.SettingsActivity" />
-        <activity android:name="com.github.prawncake.biomapapp.SelectDBActivity"></activity>
-        <activity android:name="com.github.prawncake.biomapapp.HelpActivity"></activity>
+        <activity android:name="com.github.prawncake.biomapapp.SelectDBActivity" />
+        <activity android:name="com.github.prawncake.biomapapp.HelpActivity" />
 
-        <meta-data android:name="DATABASE" android:value="biomap.db"/>
-        <meta-data android:name="VERSION" android:value="2"/>
-        <meta-data android:name="QUERY_LOG" android:value="true"/>
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.github.eternaldeiwos.biomapapp"/>
+        <meta-data
+            android:name="DATABASE"
+            android:value="biomap.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="2" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.github.eternaldeiwos.biomapapp" />
+
+        <activity
+            android:name="com.github.eternaldeiwos.biomapapp.AuthenticatorActivity"
+            android:label="@string/title_activity_authenticator"></activity>
+
+        <service android:name=".AuthenticatorService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator"/>
+        </service>
     </application>
 
 </manifest>

@@ -7,10 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.github.eternaldeiwos.biomapapp.LoginActivity;
-
 import java.io.IOException;
 
+import com.github.eternaldeiwos.biomapapp.AuthenticatorActivity;
 import com.github.eternaldeiwos.biomapapp.R;
 
 //This class acts as a base class to be included in any activity so that the menu items are all the same across all classes that inherit this.
@@ -38,7 +37,7 @@ public class BaseActivity extends AppCompatActivity
                 startActivityForResult(intent,2);
                 return true;
             case R.id.logout_menu:
-                intent = new Intent(this, LoginActivity.class);
+                intent = new Intent(this, AuthenticatorActivity.class);
                 startActivity(intent);
                 return true;
             default:

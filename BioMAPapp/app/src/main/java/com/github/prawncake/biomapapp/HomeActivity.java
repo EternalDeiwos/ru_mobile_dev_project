@@ -16,6 +16,8 @@ import com.github.eternaldeiwos.biomapapp.rest.RestUser;
 import java.util.Map;
 
 import com.github.eternaldeiwos.biomapapp.R;
+import com.orm.SugarContext;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,6 +43,8 @@ public class HomeActivity extends BaseActivity {
         nameField = (TextView) findViewById(R.id.nameField);
         aduField = (TextView) findViewById(R.id.aduField);
         addDBBtn = (Button) findViewById(R.id.button);
+
+        SugarContext.init(this);
 
         //TODO: set what happens when a user clicks on a list item
     }

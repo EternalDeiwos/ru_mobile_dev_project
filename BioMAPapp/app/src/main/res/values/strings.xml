@@ -3,7 +3,8 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_adu">ADU Number</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -16,4 +17,6 @@
     <string name="userName">Name</string>
     <string name="userADU">abc123</string>
     <string name="AddDatabaseButton">Add Database (Temp: Test API)</string>
+    <string name="title_activity_authenticator">Sign in</string>
+    <string name="acc_label">ADU BioMap</string>
 </resources>
