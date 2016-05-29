@@ -13,5 +13,6 @@ public class ViewRecordsActivity extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_records);
+
     }
 }
