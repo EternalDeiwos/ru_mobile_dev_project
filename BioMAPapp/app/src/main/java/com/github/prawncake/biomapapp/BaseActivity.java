@@ -21,24 +21,6 @@ import eternaldeiwos.github.com.biomapapp.R;
 //This class acts as a base class to be included in any activity so that the menu items are all the same across all classes that inherit this.
 public class BaseActivity extends AppCompatActivity
 {
-    private final static String DB_NAME = "biomap_couchbase";
-    private Database database;
-    private Manager manager;
-
-    public Database getDatabaseInstance() throws CouchbaseLiteException, IOException {
-        if (database == null) {
-            database =  getManagerInstance().getDatabase(DB_NAME);
-        }
-        return database;
-    }
-
-    public Manager getManagerInstance() throws IOException {
-        if (manager == null) {
-            manager = new Manager(new AndroidContext(this), Manager.DEFAULT_OPTIONS);
-        }
-        return manager;
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
