@@ -7,16 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.couchbase.lite.Context;
-import com.couchbase.lite.CouchbaseLiteException;
-import com.couchbase.lite.Database;
-import com.couchbase.lite.Manager;
-import com.couchbase.lite.android.AndroidContext;
 import com.github.eternaldeiwos.biomapapp.LoginActivity;
 
 import java.io.IOException;
 
-import eternaldeiwos.github.com.biomapapp.R;
+import com.github.eternaldeiwos.biomapapp.R;
 
 //This class acts as a base class to be included in any activity so that the menu items are all the same across all classes that inherit this.
 public class BaseActivity extends AppCompatActivity
