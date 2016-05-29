@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="eternaldeiwos.github.com.biomapapp">
+    package="com.github.eternaldeiwos.biomapapp">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -26,6 +26,11 @@
         <activity android:name="com.github.prawncake.biomapapp.SettingsActivity" />
         <activity android:name="com.github.prawncake.biomapapp.SelectDBActivity"></activity>
         <activity android:name="com.github.prawncake.biomapapp.HelpActivity"></activity>
+
+        <meta-data android:name="DATABASE" android:value="biomap.db"/>
+        <meta-data android:name="VERSION" android:value="2"/>
+        <meta-data android:name="QUERY_LOG" android:value="true"/>
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.github.eternaldeiwos.biomapapp"/>
     </application>
 
 </manifest>
