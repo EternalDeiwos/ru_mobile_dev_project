@@ -46,7 +46,7 @@ public class ProjectTypeAdapter extends TypeAdapter<Map<String, Project>> {
                     i.get("Description").getAsString(),
                     i.get("Date_started").getAsString()
             );
-            map.put(project.getDb_name(), project);
+            map.put(project.getProjectID(), project);
         }
 
         return map;

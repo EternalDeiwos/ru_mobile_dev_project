@@ -22,6 +22,8 @@ public class Project {
         this.date_started = date_started;
     }
 
+    public String getProjectID() { return db_name; }
+
     public String getImageURL() {
         return API.ADU_VMUS_URL + "images/" + db_name + "_logo.png";
     }
