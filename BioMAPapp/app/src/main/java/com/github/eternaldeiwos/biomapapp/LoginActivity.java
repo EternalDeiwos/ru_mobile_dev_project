@@ -32,7 +32,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import eternaldeiwos.github.com.biomapapp.R;
+import com.github.eternaldeiwos.biomapapp.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

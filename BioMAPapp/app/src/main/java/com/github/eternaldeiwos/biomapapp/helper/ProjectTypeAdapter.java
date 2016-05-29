@@ -1,8 +1,5 @@
 package com.github.eternaldeiwos.biomapapp.helper;
 
-import android.text.format.DateFormat;
-import android.text.method.DateTimeKeyListener;
-
 import com.github.eternaldeiwos.biomapapp.model.Project;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -46,7 +43,7 @@ public class ProjectTypeAdapter extends TypeAdapter<Map<String, Project>> {
                     i.get("Description").getAsString(),
                     i.get("Date_started").getAsString()
             );
-            map.put(project.getProjectID(), project);
+            map.put(project.toString(), project);
         }
 
         return map;

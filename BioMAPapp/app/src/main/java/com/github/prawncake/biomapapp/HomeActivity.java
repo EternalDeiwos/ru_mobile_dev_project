@@ -15,7 +15,7 @@ import com.github.eternaldeiwos.biomapapp.rest.RestUser;
 
 import java.util.Map;
 
-import eternaldeiwos.github.com.biomapapp.R;
+import com.github.eternaldeiwos.biomapapp.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,16 +64,16 @@ public class HomeActivity extends BaseActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 User tmp = response.body();
                 Log.d("USER", tmp.toString());
-                Log.d("USER TEST", tmp.getName().equals(testUserNameShouldEqual)
-                        && tmp.getSurname().equals(testUserSurnameShouldEqual)
+                Log.d("USER TEST", tmp.name.equals(testUserNameShouldEqual)
+                        && tmp.surname.equals(testUserSurnameShouldEqual)
                         ? "passed"
                         : "failed"
                 );
 
                 nameField.setText(tmp.toString());
-                aduField.setText(tmp.getAdu_number());
+                aduField.setText(tmp.adu_number);
 
-                RestUser.getPrivileges(tmp.getToken(), new Callback<Permission>() {
+                RestUser.getPrivileges(tmp.token, new Callback<Permission>() {
                     @Override
                     public void onResponse(Call<Permission> call, Response<Permission> response) {
                         Permission permission = response.body();

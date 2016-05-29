@@ -2,7 +2,7 @@ package com.github.prawncake.biomapapp;
 
 import android.os.Bundle;
 
-import eternaldeiwos.github.com.biomapapp.R;
+import com.github.eternaldeiwos.biomapapp.R;
 
 public class HelpActivity extends BaseActivity {
 
