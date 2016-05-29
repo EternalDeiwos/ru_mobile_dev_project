@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import eternaldeiwos.github.com.biomapapp.R;
+import com.github.eternaldeiwos.biomapapp.R;
 
 public class LocationFragment extends Fragment
 {

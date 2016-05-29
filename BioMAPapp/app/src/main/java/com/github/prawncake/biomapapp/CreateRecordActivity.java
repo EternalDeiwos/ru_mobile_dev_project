@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import eternaldeiwos.github.com.biomapapp.R;
+import com.github.eternaldeiwos.biomapapp.R;
 
 public class CreateRecordActivity extends BaseActivity{
 
@@ -20,9 +20,9 @@ public class CreateRecordActivity extends BaseActivity{
         setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Location"));
+        tabLayout.addTab(tabLayout.newTab().setText("Specimen"));
+        tabLayout.addTab(tabLayout.newTab().setText("Media"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

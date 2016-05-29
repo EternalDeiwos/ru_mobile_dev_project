@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.github.eternaldeiwos.biomapapp.LoginActivity;
+//import com.github.eternaldeiwos.biomapapp.LoginActivity;
 import com.github.eternaldeiwos.biomapapp.model.Permission;
 import com.github.eternaldeiwos.biomapapp.model.Project;
 import com.github.eternaldeiwos.biomapapp.model.User;

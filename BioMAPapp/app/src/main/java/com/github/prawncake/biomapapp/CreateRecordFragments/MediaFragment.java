@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import eternaldeiwos.github.com.biomapapp.R;
+import com.github.eternaldeiwos.biomapapp.R;
 
 public class MediaFragment extends Fragment
 {

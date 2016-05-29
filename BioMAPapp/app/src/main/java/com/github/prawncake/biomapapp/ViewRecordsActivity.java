@@ -3,7 +3,7 @@ package com.github.prawncake.biomapapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import eternaldeiwos.github.com.biomapapp.R;
+import com.github.eternaldeiwos.biomapapp.R;
 
 public class ViewRecordsActivity extends BaseActivity
 {
