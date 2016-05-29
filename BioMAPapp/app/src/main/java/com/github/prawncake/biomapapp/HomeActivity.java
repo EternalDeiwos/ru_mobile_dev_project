@@ -3,10 +3,13 @@ package com.github.prawncake.biomapapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.github.eternaldeiwos.biomapapp.LoginActivity;
 import com.github.eternaldeiwos.biomapapp.model.Permission;
 import com.github.eternaldeiwos.biomapapp.model.Project;
 import com.github.eternaldeiwos.biomapapp.model.User;
@@ -42,12 +45,58 @@ public class HomeActivity extends BaseActivity {
         aduField = (TextView) findViewById(R.id.aduField);
         addDBBtn = (Button) findViewById(R.id.button);
 
+        final Button contextMenuButton = (Button)findViewById(R.id.button4);
+
+        contextMenuButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                contextMenuButton.performLongClick();
+            }
+        }
+        );
+
+        registerForContextMenu(contextMenuButton);
         //TODO: set what happens when a user clicks on a list item
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        getMenuInflater().inflate(R.menu.records_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected (MenuItem item)
+    {
+        Intent intent;
+        switch (item.getItemId())
+        {
+            case R.id.newRecord_menu:
+                intent = new Intent(this, CreateRecordActivity.class);
+                startActivityForResult(intent,NO_HANDLER_NEEDED);
+                return true;
+            case R.id.viewRecord_menu:
+                intent = new Intent(this, ViewRecordsActivity.class);
+                startActivityForResult(intent,NO_HANDLER_NEEDED);
+                return true;
+            case R.id.remove_menu:
+                //TODO
+                return true;
+            default:
+                return false;
+        }
     }
 
     public void getDetails()
     {
         //TODO: get the user's details and fill in their ADU number and Name
+    }
+
+    public void clickOnDBTestButtonClick (View view)
+    {
+
     }
 
     public void AddDatabaseButtonClick(View view)

@@ -24,8 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name="com.github.prawncake.biomapapp.SettingsActivity" />
-        <activity android:name="com.github.prawncake.biomapapp.SelectDBActivity"></activity>
-        <activity android:name="com.github.prawncake.biomapapp.HelpActivity"></activity>
+        <activity android:name="com.github.prawncake.biomapapp.SelectDBActivity" />
+        <activity android:name="com.github.prawncake.biomapapp.HelpActivity" />
+        <activity android:name="com.github.prawncake.biomapapp.CreateRecordActivity" />
+        <activity android:name="com.github.prawncake.biomapapp.ViewRecordsActivity"></activity>
     </application>
 
 </manifest>

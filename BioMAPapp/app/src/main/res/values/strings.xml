@@ -16,4 +16,5 @@
     <string name="userName">Name</string>
     <string name="userADU">abc123</string>
     <string name="AddDatabaseButton">Add Database (Temp: Test API)</string>
+    <string name="clickDBTest">Click on DB test</string>
 </resources>
