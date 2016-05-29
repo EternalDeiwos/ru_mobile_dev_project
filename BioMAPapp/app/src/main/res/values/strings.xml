@@ -23,4 +23,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gps">GPS Location</string>
+
+    <string name="prompt_GPS">GPS Location</string>
+    <string name="prompt_town">Town</string>
+    <string name="prompt_province">Province</string>
+    <string name="prompt_country">Country</string>
+    <string name="prompt_locality">Locality: Enter directions from the closest town or description of area</string>
+    <string name="google_maps">Google Maps</string>
+    <string name="species">Species</string>
+    <string name="description">Description of the specimen</string>
+    <string name="date">Date</string>
+    date
+
 </resources>
