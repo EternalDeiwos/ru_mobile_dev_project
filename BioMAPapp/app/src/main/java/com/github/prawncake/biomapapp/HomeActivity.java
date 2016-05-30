@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -74,20 +75,17 @@ public class HomeActivity extends BaseActivity {
         aduField = (TextView) findViewById(R.id.aduField);
         addDBBtn = (Button) findViewById(R.id.button);
 
-        final Button contextMenuButton = (Button)findViewById(R.id.button4);
-
-        contextMenuButton.setOnClickListener(new View.OnClickListener()
+        registerForContextMenu(list);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
-            public void onClick(View view)
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                contextMenuButton.performLongClick();
+                list.performLongClick();
+                //Toast.makeText(HomeActivity.this, "Hello", Toast.LENGTH_SHORT).show();
             }
         }
         );
-
-        registerForContextMenu(contextMenuButton);
-
 
         //TODO: set what happens when a user clicks on a list item
     }
