@@ -16,6 +16,7 @@ import com.google.gson.stream.JsonWriter;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -109,7 +110,7 @@ public class LocationTypeAdapter extends TypeAdapter<Location> {
         return location;
     }
 
-    private AddressComponent[] parseAddressComponents(JsonArray a) {
+    private List<AddressComponent> parseAddressComponents(JsonArray a) {
         List<AddressComponent> list = new LinkedList<>();
 
         for (JsonElement e : a) {
@@ -124,32 +125,30 @@ public class LocationTypeAdapter extends TypeAdapter<Location> {
             list.add(new AddressComponent(
                     o.get("long_name").getAsString(),
                     o.get("short_name").getAsString(),
-                    (LocationType[]) types.toArray()
+                    types
             ));
         }
-        return (AddressComponent[]) list.toArray();
+        return list;
     }
 
-    private LocationEntry[] parseLocationEntries(JsonArray a) {
+    private List<LocationEntry> parseLocationEntries(JsonArray a) {
         List<LocationEntry> list = new LinkedList<>();
 
         Iterator<JsonElement> iterator = a.iterator();
         for (JsonElement e = iterator.next(); iterator.hasNext(); e = iterator.next()) {
-            List<LocationType> types = new LinkedList<>();
             JsonObject o = e.getAsJsonObject();
-
             JsonArray typesJson = o.getAsJsonArray("types");
+            List<LocationType> types = new ArrayList<>(typesJson.size());
             for (JsonElement te : typesJson) {
                 types.add(LocationType.getEnum(te.getAsString()));
             }
 
             list.add(new LocationEntry(
                     o.get("formatted_address").getAsString(),
-                    (LocationType[]) types.toArray(),
+                    types,
                     parseAddressComponents(o.getAsJsonArray("address_components"))
-
             ));
         }
-        return (LocationEntry[]) list.toArray();
+        return list;
     }
 }

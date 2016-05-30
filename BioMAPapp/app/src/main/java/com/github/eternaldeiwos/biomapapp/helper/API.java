@@ -7,7 +7,7 @@ import java.net.URI;
  */
 public class API {
     private API() {}
-    public static final String GOOGLE_API_KEY = "AIzaSyD727aNZu3pcmOl3v0wvKOYbJJO-SUJcv0";
+    public static final String GOOGLE_API_KEY = "AIzaSyDPgbw87OAKeqG33NKZU4eX1MdnLw8pY3Y";
     public static final String GOOGLE_MAPS_URL = "https://maps.googleapis.com/maps/api/geocode/";
     public static final String ADU_VMUS_URL = "http://vmus.adu.org.za/";
     public static final String ADU_API_URL = "http://api.adu.org.za/";

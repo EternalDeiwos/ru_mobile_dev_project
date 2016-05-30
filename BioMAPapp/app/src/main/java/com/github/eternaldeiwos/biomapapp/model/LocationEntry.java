@@ -9,23 +9,23 @@ import java.util.List;
 
 public class LocationEntry implements Comparable<LocationEntry> {
     public String address;
-    public LocationType[] types;
-    public AddressComponent[] addressComponents;
+    public List<LocationType> types;
+    public List<AddressComponent> addressComponents;
 
     @Override
     public String toString() {
         return address;
     }
 
-    public LocationEntry(String address, LocationType[] types, AddressComponent[] addressComponents) {
+    public LocationEntry(String address, List<LocationType> types, List<AddressComponent> addressComponents) {
         this.address = address;
         this.types = types;
         this.addressComponents = addressComponents;
     }
 
     public LocationType bestType() {
-        LocationType bestType = types.length > 0
-                ? types[0]
+        LocationType bestType = types.size() > 0
+                ? types.get(0)
                 : null;
         for (LocationType t : types) {
             if (t.compareTo(bestType) > 0) bestType = t;

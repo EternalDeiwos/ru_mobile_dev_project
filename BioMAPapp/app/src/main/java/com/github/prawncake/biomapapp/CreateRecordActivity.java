@@ -1,6 +1,7 @@
 package com.github.prawncake.biomapapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,24 +15,36 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 
 import com.github.eternaldeiwos.biomapapp.R;
+import com.github.eternaldeiwos.biomapapp.SelectLocationActivity;
+import com.github.eternaldeiwos.biomapapp.model.Location;
+import com.github.eternaldeiwos.biomapapp.rest.RestReverseGeocode;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class CreateRecordActivity extends BaseActivity{
     public static final int ACTION_GET_LOCATION_FROM_MAP = 101;
+    public static final String KEY_LAT = "lat";
+    public static final String KEY_LNG = "lng";
 
     String userChosenTask;
     int imageNum;
     TextView theText;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +54,7 @@ public class CreateRecordActivity extends BaseActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mContext = this;
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Location"));
@@ -75,7 +89,10 @@ public class CreateRecordActivity extends BaseActivity{
         });
     }
 
-
+    public void onSelectLocationClick(View v) {
+        Intent intent = new Intent(mContext, SelectLocationActivity.class);
+        startActivityForResult(intent, ACTION_GET_LOCATION_FROM_MAP);
+    }
 
     public void showDatePickerDialog(View view)
     {
@@ -181,14 +198,20 @@ public class CreateRecordActivity extends BaseActivity{
 
         if (resultCode == Activity.RESULT_OK)
         {
-            if (requestCode == SELECT_FILE)
-                onSelectFromGalleryResult(data);
-            else if (requestCode == REQUEST_CAMERA)
-                onCaptureImageResult(data);
+            switch (requestCode) {
+                case SELECT_FILE:
+                    onSelectFromGalleryResult(data);
+                    break;
+                case REQUEST_CAMERA:
+                    onCaptureImageResult(data);
+                    break;
+                case ACTION_GET_LOCATION_FROM_MAP:
+                    onGoogleMapsResult(data);
+                    break;
+            }
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data)
     {
         if (imageNum==1)
@@ -236,35 +259,55 @@ public class CreateRecordActivity extends BaseActivity{
         theText.setText(Uri.fromFile(destination).toString());
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState)
-    {
-        TextView pic1 = (TextView)findViewById(R.id.picture1);
-        TextView pic2 = (TextView)findViewById(R.id.picture2);
-        TextView pic3 = (TextView)findViewById(R.id.picture3);
-        // Save UI state changes to the savedInstanceState.
-        // This bundle will be passed to onCreate if the process is
-        // killed and restarted.
+//    @Override
+//    public void onSaveInstanceState(Bundle savedInstanceState)
+//    {
+//        TextView pic1 = (TextView)findViewById(R.id.picture1);
+//        TextView pic2 = (TextView)findViewById(R.id.picture2);
+//        TextView pic3 = (TextView)findViewById(R.id.picture3);
+//        // Save UI state changes to the savedInstanceState.
+//        // This bundle will be passed to onCreate if the process is
+//        // killed and restarted.
+//
+//        savedInstanceState.putString("Picture1", pic1.getText().toString());
+//        savedInstanceState.putString("Picture2", pic2.getText().toString());
+//        savedInstanceState.putString("Picture3", pic3.getText().toString());
+//
+//        // etc.
+//        super.onSaveInstanceState(savedInstanceState);
+//    }
+//    //onRestoreInstanceState
+//    @Override
+//    public void onRestoreInstanceState(Bundle savedInstanceState)
+//    {
+//        TextView pic1 = (TextView)findViewById(R.id.picture1);
+//        TextView pic2 = (TextView)findViewById(R.id.picture2);
+//        TextView pic3 = (TextView)findViewById(R.id.picture3);
+//        super.onRestoreInstanceState(savedInstanceState);
+//        // Restore UI state from the savedInstanceState.
+//        // This bundle has also been passed to onCreate.
+//        pic1.setText(savedInstanceState.getString("Picture1"));
+//        pic2.setText(savedInstanceState.getString("Picture2"));
+//        pic3.setText(savedInstanceState.getString("Picture3"));
+//    }
 
-        savedInstanceState.putString("Picture1", pic1.getText().toString());
-        savedInstanceState.putString("Picture2", pic2.getText().toString());
-        savedInstanceState.putString("Picture3", pic3.getText().toString());
+    public void onGoogleMapsResult(Intent intent) {
+        Bundle results = intent.getExtras();
+        float lat = results.getFloat(KEY_LAT);
+        float lng = results.getFloat(KEY_LNG);
+        Log.d("MAPS", String.format(Locale.US, "lat: %.6f; lng: %.6f;", lat, lng));
+        RestReverseGeocode.getLocation(lat, lng, new Callback<Location>() {
+            @Override
+            public void onResponse(Call<Location> call, Response<Location> response) {
+                Location loc = response.body();
+                Log.d("LOCATION", loc.status.toString());
+                Log.d("LOCATION", loc.getBestEntry().address);
+            }
 
-        // etc.
-        super.onSaveInstanceState(savedInstanceState);
-    }
-    //onRestoreInstanceState
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState)
-    {
-        TextView pic1 = (TextView)findViewById(R.id.picture1);
-        TextView pic2 = (TextView)findViewById(R.id.picture2);
-        TextView pic3 = (TextView)findViewById(R.id.picture3);
-        super.onRestoreInstanceState(savedInstanceState);
-        // Restore UI state from the savedInstanceState.
-        // This bundle has also been passed to onCreate.
-        pic1.setText(savedInstanceState.getString("Picture1"));
-        pic2.setText(savedInstanceState.getString("Picture2"));
-        pic3.setText(savedInstanceState.getString("Picture3"));
+            @Override
+            public void onFailure(Call<Location> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 }

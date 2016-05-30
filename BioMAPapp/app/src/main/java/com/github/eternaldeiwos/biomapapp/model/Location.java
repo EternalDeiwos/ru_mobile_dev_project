@@ -2,6 +2,8 @@ package com.github.eternaldeiwos.biomapapp.model;
 
 import com.github.eternaldeiwos.biomapapp.rest.RestReverseGeocode;
 
+import java.util.List;
+
 /**
  * Created by glinklater on 2016/05/30.
  */
@@ -15,10 +17,10 @@ public class Location {
         return RestReverseGeocode.getLocation(lat, lng);
     }
 
-    public LocationEntry[] entries;
+    public List<LocationEntry> entries;
     public ResponseType status;
 
-    public Location(LocationEntry[] entries, ResponseType status) {
+    public Location(List<LocationEntry> entries, ResponseType status) {
         this.entries = entries;
         this.status = status;
     }
@@ -28,8 +30,8 @@ public class Location {
     public boolean isSuccess() { return this.status == ResponseType.OK; }
 
     public LocationEntry getBestEntry() {
-        LocationEntry best = entries.length > 0
-                ? entries[0]
+        LocationEntry best = entries.size() > 0
+                ? entries.get(0)
                 : null;
         for (LocationEntry entry : entries) {
             if (entry.compareTo(best) > 0) best = entry;
