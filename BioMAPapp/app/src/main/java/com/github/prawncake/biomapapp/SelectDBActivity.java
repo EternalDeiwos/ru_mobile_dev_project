@@ -1,5 +1,6 @@
 package com.github.prawncake.biomapapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -57,17 +58,21 @@ public class SelectDBActivity extends BaseActivity
         setContentView(R.layout.activity_select_db);
 
 
-        custom_database_list adapter = new
-                custom_database_list(SelectDBActivity.this, web, imageId);
+        custom_database_list adapter = new custom_database_list(SelectDBActivity.this, web, imageId);
         list=(ListView)findViewById(R.id.databases);
         list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
                 Toast.makeText(SelectDBActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
-
+                Intent intentExtra = new Intent(SelectDBActivity.this,HomeActivity.class);
+                intentExtra.putExtra("dbName",web[position]);
+                intentExtra.putExtra("dbPic",imageId[position]);
+                setResult(RESULT_OK,intentExtra);
+                finish();
             }
         });
 

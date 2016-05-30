@@ -16,7 +16,7 @@
     </string>
     <string name="userName">Name</string>
     <string name="userADU">abc123</string>
-    <string name="AddDatabaseButton">Add Database (Temp: Test API)</string>
+    <string name="AddDatabaseButton">Add Database</string>
     <string name="title_activity_authenticator">Sign in</string>
     <string name="acc_label">ADU BioMap</string>
     <string name="clickDBTest">Click on DB test</string>

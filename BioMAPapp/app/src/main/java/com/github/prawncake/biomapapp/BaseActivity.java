@@ -21,6 +21,7 @@ public class BaseActivity extends AppCompatActivity
     public final static int NO_HANDLER_NEEDED=100;
     public final static int REQUEST_CAMERA=99;
     public final static int SELECT_FILE=98;
+    public final static int ADD_NEW_DATABASE=97;
 
 
     @Override
