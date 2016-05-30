@@ -23,30 +23,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/userName"
-        android:id="@+id/nameField"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="ADU Number"
         android:id="@+id/textView3"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_marginTop="32dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/userADU"
-        android:id="@+id/aduField"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_alignStart="@+id/nameField" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -72,5 +54,28 @@
         android:id="@+id/button4"
         android:layout_alignTop="@+id/button"
         android:layout_toEndOf="@+id/button" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/userName"
+        android:id="@+id/nameField"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/userADU"
+        android:id="@+id/aduField"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignStart="@+id/nameField" />
 
 </RelativeLayout>

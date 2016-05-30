@@ -1,5 +1,7 @@
 package com.github.prawncake.biomapapp;
 
+import android.accounts.AccountManagerCallback;
+import android.accounts.AccountManagerFuture;
 import android.app.Activity;
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -56,8 +58,6 @@ public class HomeActivity extends BaseActivity {
     private static final String testUserNameShouldEqual = "Bobs";
     private static final String testUserSurnameShouldEqual = "YourUncle";
 
-    private TextView nameField;
-    private TextView aduField;
     private Button addDBBtn;
 
     ListView list;
@@ -72,13 +72,12 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
 
         SugarContext.init(this);
+        first_time_check();
 
         dbName = new ArrayList<String>();
         dbPicture = new ArrayList<Integer>();
 
         list = (ListView) findViewById(R.id.listView);
-        nameField = (TextView) findViewById(R.id.nameField);
-        aduField = (TextView) findViewById(R.id.aduField);
         addDBBtn = (Button) findViewById(R.id.button);
 
         final Button contextMenuButton = (Button)findViewById(R.id.button4);
@@ -129,9 +128,36 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    public void gregsLoginStuff()
+    public void first_time_check()
     {
-
+        AccountManager am = AccountManager.get(this);
+        Account[] accounts = am.getAccountsByType(AuthenticatorActivity.ACCOUNT_TYPE);
+        if (accounts == null || accounts.length == 0) {
+            am.addAccount(
+                    AuthenticatorActivity.ACCOUNT_TYPE,
+                    AuthenticatorActivity.ARG_AUTH_TYPE,
+                    null,
+                    null,
+                    this,
+                    new AccountManagerCallback<Bundle>() {
+                        @Override
+                        public void run(AccountManagerFuture<Bundle> future) {
+                            Intent intent = getIntent();
+                            finish();
+                            startActivity(intent);
+                        }
+                    },
+                    null
+            );
+        } else {
+            TextView nameField;
+            TextView aduField;
+            nameField = (TextView) findViewById(R.id.nameField);
+            aduField = (TextView) findViewById(R.id.aduField);
+            nameField.setText(am.getUserData(accounts[0], Authenticator.KEY_USER_NAME) + " " +
+                    am.getUserData(accounts[0], Authenticator.KEY_USER_SURNAME));
+            aduField.setText(am.getUserData(accounts[0], Authenticator.KEY_ADU_NUMBER));
+        }
     }
 
 
