@@ -18,21 +18,16 @@ import java.util.List;
  * Created by glinklater on 2016/05/30.
  */
 
-public class Database extends SugarRecord {
-    public String project;
+public class Database  {
     public String name;
-
-    public Database() {}
+    public String project;
 
     public Database(String project, String name) {
-        this.name = name;
         this.project = project;
+        this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
+    public String getProject(){return project;}
 
     public Uri getImageURI()
     {
