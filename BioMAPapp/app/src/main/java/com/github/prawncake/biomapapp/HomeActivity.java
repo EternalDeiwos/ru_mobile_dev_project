@@ -122,87 +122,9 @@ public class HomeActivity extends BaseActivity {
 
     public void gregsLoginStuff()
     {
-        RestUser.getUser(
-                testUserADUNumber,
-                testUserEmail,
-                testUserPasswordEnc,
-                new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        User tmp = response.body();
-                        Log.d("USER", tmp.toString());
-                        Log.d("USER TEST", tmp.name.equals(testUserNameShouldEqual)
-                                && tmp.surname.equals(testUserSurnameShouldEqual)
-                                ? "passed"
-                                : "failed"
-                        );
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK)
-        switch (requestCode) {
-            case CreateRecordActivity.ACTION_GET_LOCATION_FROM_MAP:
-                Bundle res = data.getExtras();
-                Log.d("RESULT", String.format(Locale.US, "lat: %.6f; lng: %.6f;", res.getFloat("lat"), res.getFloat("lng")));
-        }
-    }
-
-    public void AddDatabaseButtonClick(View view)
-    {
-//        Intent intent = new Intent(this, SelectDBActivity.class);
-//        startActivityForResult(intent, 2);
-        final Context context = this;
-
-        LocationProvider.requestSingleUpdate(this, new LocationProvider.LocationCallback() {
-            @Override
-            public void onNewLocationAvailable(Location location) {
-                String TAG = "LOCATION";
-                Log.d(TAG, String.format(Locale.US, "lat: %.6f; lng: %.6f; alt (%b): %.2f;", location.getLatitude(), location.getLongitude(), location.hasAltitude(), location.getAltitude()));
-
-                        nameField.setText(tmp.toString());
-                        aduField.setText(tmp.adu_number);
-                float lat = (float) location.getLatitude();
-                float lng = (float) location.getLongitude();
-
-                        RestUser.getPrivileges(tmp.token, new Callback<Permission>() {
-                            @Override
-                            public void onResponse(Call<Permission> call, Response<Permission> response) {
-                                Permission permission = response.body();
-                                Log.d("PERMISSION", permission.toString());
-                            }
-
-                            @Override
-                            public void onFailure(Call<Permission> call, Throwable t) {
-                                t.printStackTrace();
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        Log.d("Retrofit", t.getMessage());
-                    }
-                });
-
-        RestProject.getProjects(new Callback<Map<String, Project>>() {
-            @Override
-            public void onResponse(Call<Map<String, Project>> call, Response<Map<String, Project>> response) {
-                for (String s : response.body().keySet()) {
-                    Log.d("PROJECTS", s);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Map<String, Project>> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-                Intent intent = new Intent(context, SelectLocationActivity.class);
-                startActivityForResult(intent, CreateRecordActivity.ACTION_GET_LOCATION_FROM_MAP);
-            }
-        });
 
 //        RestUser.getUser(
 //                testUserADUNumber,
@@ -255,7 +177,6 @@ public class HomeActivity extends BaseActivity {
 //                t.printStackTrace();
 //            }
 //        });
-    }
 
     public void AddDatabaseButtonClick(View view)
     {
