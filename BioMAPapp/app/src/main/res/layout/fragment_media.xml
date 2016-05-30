@@ -39,33 +39,31 @@
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
+                android:layout_height="match_parent">
 
-
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/image1" />
+                    android:text="@string/picture1"
+                    android:id="@+id/picture1"
+                    android:onClick="onClickImage1" />
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/image2" />
+                    android:text="@string/picture2"
+                    android:id="@+id/picture2"
+                    android:onClick="onClickImage2" />
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/image3" />
+                    android:text="@string/picture3"
+                    android:id="@+id/picture3"
+                    android:onClick="onClickImage3" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add Picture"
-                    android:id="@+id/add_picture"
-                    android:onClick="selectImage" />
             </LinearLayout>
 
 

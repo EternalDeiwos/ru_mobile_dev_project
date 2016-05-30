@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.TabLayout;
@@ -14,7 +15,8 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.TextView;
+
 
 import com.github.eternaldeiwos.biomapapp.R;
 
@@ -23,12 +25,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class CreateRecordActivity extends BaseActivity
 {
 
     String userChosenTask;
-    ImageView ivImage;
+    int imageNum;
+    TextView theText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +42,6 @@ public class CreateRecordActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ivImage= (ImageView) findViewById(R.id.image1);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Location"));
@@ -81,7 +84,25 @@ public class CreateRecordActivity extends BaseActivity
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    public void selectImage(View view)
+    public void onClickImage1(View view)
+    {
+        imageNum = 1;
+        selectImage();
+    }
+
+    public void onClickImage2(View view)
+    {
+        imageNum = 2;
+        selectImage();
+    }
+
+    public void onClickImage3(View view)
+    {
+        imageNum = 3;
+        selectImage();
+    }
+
+    public void selectImage()
     {
         final CharSequence[] items = { "Take Photo", "Choose from Library", "Cancel" };
         AlertDialog.Builder builder = new AlertDialog.Builder(CreateRecordActivity.this);
@@ -94,12 +115,12 @@ public class CreateRecordActivity extends BaseActivity
                 if (items[item].equals("Take Photo"))
                 {
                     userChosenTask="Take Photo";
-                    if(result) cameraIntent();
+                    cameraIntent();
                 }
                 else if (items[item].equals("Choose from Library"))
                 {
                     userChosenTask="Choose from Library";
-                    if(result) galleryIntent();
+                    galleryIntent();
                 }
                 else if (items[item].equals("Cancel"))
                 {
@@ -118,10 +139,20 @@ public class CreateRecordActivity extends BaseActivity
 
     private void galleryIntent()
     {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select File"),SELECT_FILE);
+        // invoke the image gallery using an implict intent.
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+
+        // where do we want to find the data?
+        File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        String pictureDirectoryPath = pictureDirectory.getPath();
+        // finally, get a URI representation
+        Uri data = Uri.parse(pictureDirectoryPath);
+
+        // set the data and type.  Get all image types.
+        photoPickerIntent.setDataAndType(data, "image/*");
+
+        // we will invoke this activity, and get something back from it.
+        startActivityForResult(photoPickerIntent, SELECT_FILE);
     }
 
     @Override
@@ -149,7 +180,8 @@ public class CreateRecordActivity extends BaseActivity
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK)
+        {
             if (requestCode == SELECT_FILE)
                 onSelectFromGalleryResult(data);
             else if (requestCode == REQUEST_CAMERA)
@@ -160,27 +192,28 @@ public class CreateRecordActivity extends BaseActivity
     @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data)
     {
-        ivImage= (ImageView) findViewById(R.id.image1);
-        Bitmap bm=null;
-        if (data != null) {
-            try
-            {
-                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        Bitmap thumbnail = bm;
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-        ivImage.setImageBitmap(thumbnail);
+        if (imageNum==1)
+            theText = (TextView)findViewById(R.id.picture1);
+        if (imageNum==2)
+            theText = (TextView)findViewById(R.id.picture2);
+        if (imageNum==3)
+            theText = (TextView)findViewById(R.id.picture3);
 
+
+        Uri imageUri = data.getData();
+        String location = imageUri.toString();
+        theText.setText(location);
     }
+
     private void onCaptureImageResult(Intent data)
     {
-        ivImage= (ImageView) findViewById(R.id.image1);
+        if (imageNum==1)
+            theText = (TextView)findViewById(R.id.picture1);
+        if (imageNum==2)
+            theText = (TextView)findViewById(R.id.picture2);
+        if (imageNum==3)
+            theText = (TextView)findViewById(R.id.picture3);
+
         Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
@@ -201,8 +234,38 @@ public class CreateRecordActivity extends BaseActivity
         {
             e.printStackTrace();
         }
-        ivImage.setImageBitmap(thumbnail);
-
+        theText.setText(Uri.fromFile(destination).toString());
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState)
+    {
+        TextView pic1 = (TextView)findViewById(R.id.picture1);
+        TextView pic2 = (TextView)findViewById(R.id.picture2);
+        TextView pic3 = (TextView)findViewById(R.id.picture3);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+
+        savedInstanceState.putString("Picture1", pic1.getText().toString());
+        savedInstanceState.putString("Picture2", pic2.getText().toString());
+        savedInstanceState.putString("Picture3", pic3.getText().toString());
+
+        // etc.
+        super.onSaveInstanceState(savedInstanceState);
+    }
+    //onRestoreInstanceState
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        TextView pic1 = (TextView)findViewById(R.id.picture1);
+        TextView pic2 = (TextView)findViewById(R.id.picture2);
+        TextView pic3 = (TextView)findViewById(R.id.picture3);
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore UI state from the savedInstanceState.
+        // This bundle has also been passed to onCreate.
+        pic1.setText(savedInstanceState.getString("Picture1"));
+        pic2.setText(savedInstanceState.getString("Picture2"));
+        pic3.setText(savedInstanceState.getString("Picture3"));
+    }
 }

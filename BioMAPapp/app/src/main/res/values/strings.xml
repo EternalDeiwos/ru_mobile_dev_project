@@ -34,6 +34,8 @@
     <string name="species">Species</string>
     <string name="description">Description of the specimen</string>
     <string name="date">Date</string>
-    date
+    <string name="picture1">Click to add picture</string>
+    <string name="picture2">Click to add picture</string>
+    <string name="picture3">Click to add picture</string>
 
 </resources>
