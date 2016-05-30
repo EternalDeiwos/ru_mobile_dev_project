@@ -3,6 +3,7 @@ package com.github.prawncake.biomapapp;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.github.eternaldeiwos.biomapapp.Authenticator;
 import com.github.eternaldeiwos.biomapapp.AuthenticatorActivity;
 import com.github.eternaldeiwos.biomapapp.AuthenticatorService;
+import com.github.eternaldeiwos.biomapapp.LocationProvider;
 import com.github.eternaldeiwos.biomapapp.model.Permission;
 import com.github.eternaldeiwos.biomapapp.model.Project;
 import com.github.eternaldeiwos.biomapapp.model.User;
@@ -23,6 +25,7 @@ import com.github.eternaldeiwos.biomapapp.rest.RestUser;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import com.github.eternaldeiwos.biomapapp.R;
@@ -116,56 +119,64 @@ public class HomeActivity extends BaseActivity {
 //        Intent intent = new Intent(this, SelectDBActivity.class);
 //        startActivityForResult(intent, 2);
 
-        RestUser.getUser(
-                testUserADUNumber,
-                testUserEmail,
-                testUserPasswordEnc,
-                new Callback<User>() {
+        LocationProvider.requestSingleUpdate(this, new LocationProvider.LocationCallback() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                User tmp = response.body();
-                Log.d("USER", tmp.toString());
-                Log.d("USER TEST", tmp.name.equals(testUserNameShouldEqual)
-                        && tmp.surname.equals(testUserSurnameShouldEqual)
-                        ? "passed"
-                        : "failed"
-                );
-
-                nameField.setText(tmp.toString());
-                aduField.setText(tmp.adu_number);
-
-                RestUser.getPrivileges(tmp.token, new Callback<Permission>() {
-                    @Override
-                    public void onResponse(Call<Permission> call, Response<Permission> response) {
-                        Permission permission = response.body();
-                        Log.d("PERMISSION", permission.toString());
-                    }
-
-                    @Override
-                    public void onFailure(Call<Permission> call, Throwable t) {
-                        t.printStackTrace();
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.d("Retrofit", t.getMessage());
+            public void onNewLocationAvailable(Location location) {
+                String TAG = "LOCATION";
+                Log.d(TAG, String.format(Locale.US, "lat: %.6f; lng: %.6f; alt (%b): %.2f;", location.getLatitude(), location.getLongitude(), location.hasAltitude(), location.getAltitude()));
             }
         });
 
-        RestProject.getProjects(new Callback<Map<String, Project>>() {
-            @Override
-            public void onResponse(Call<Map<String, Project>> call, Response<Map<String, Project>> response) {
-                for (String s : response.body().keySet()) {
-                    Log.d("PROJECTS", s);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Map<String, Project>> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
+//        RestUser.getUser(
+//                testUserADUNumber,
+//                testUserEmail,
+//                testUserPasswordEnc,
+//                new Callback<User>() {
+//            @Override
+//            public void onResponse(Call<User> call, Response<User> response) {
+//                User tmp = response.body();
+//                Log.d("USER", tmp.toString());
+//                Log.d("USER TEST", tmp.name.equals(testUserNameShouldEqual)
+//                        && tmp.surname.equals(testUserSurnameShouldEqual)
+//                        ? "passed"
+//                        : "failed"
+//                );
+//
+//                nameField.setText(tmp.toString());
+//                aduField.setText(tmp.adu_number);
+//
+//                RestUser.getPrivileges(tmp.token, new Callback<Permission>() {
+//                    @Override
+//                    public void onResponse(Call<Permission> call, Response<Permission> response) {
+//                        Permission permission = response.body();
+//                        Log.d("PERMISSION", permission.toString());
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Permission> call, Throwable t) {
+//                        t.printStackTrace();
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onFailure(Call<User> call, Throwable t) {
+//                Log.d("Retrofit", t.getMessage());
+//            }
+//        });
+//
+//        RestProject.getProjects(new Callback<Map<String, Project>>() {
+//            @Override
+//            public void onResponse(Call<Map<String, Project>> call, Response<Map<String, Project>> response) {
+//                for (String s : response.body().keySet()) {
+//                    Log.d("PROJECTS", s);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Map<String, Project>> call, Throwable t) {
+//                t.printStackTrace();
+//            }
+//        });
     }
 }
