@@ -2,6 +2,7 @@ package com.github.prawncake.biomapapp;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import com.github.eternaldeiwos.biomapapp.Authenticator;
 import com.github.eternaldeiwos.biomapapp.AuthenticatorActivity;
 import com.github.eternaldeiwos.biomapapp.AuthenticatorService;
 import com.github.eternaldeiwos.biomapapp.LocationProvider;
+import com.github.eternaldeiwos.biomapapp.SelectLocationActivity;
+import com.github.eternaldeiwos.biomapapp.model.Database;
 import com.github.eternaldeiwos.biomapapp.model.Permission;
 import com.github.eternaldeiwos.biomapapp.model.Project;
 import com.github.eternaldeiwos.biomapapp.model.User;
@@ -52,7 +55,6 @@ public class HomeActivity extends BaseActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
 
         nameField = (TextView) findViewById(R.id.nameField);
         aduField = (TextView) findViewById(R.id.aduField);
@@ -114,16 +116,33 @@ public class HomeActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK)
+        switch (requestCode) {
+            case CreateRecordActivity.ACTION_GET_LOCATION_FROM_MAP:
+                Bundle res = data.getExtras();
+                Log.d("RESULT", String.format(Locale.US, "lat: %.6f; lng: %.6f;", res.getFloat("lat"), res.getFloat("lng")));
+        }
+    }
+
     public void AddDatabaseButtonClick(View view)
     {
 //        Intent intent = new Intent(this, SelectDBActivity.class);
 //        startActivityForResult(intent, 2);
+        final Context context = this;
 
         LocationProvider.requestSingleUpdate(this, new LocationProvider.LocationCallback() {
             @Override
             public void onNewLocationAvailable(Location location) {
                 String TAG = "LOCATION";
                 Log.d(TAG, String.format(Locale.US, "lat: %.6f; lng: %.6f; alt (%b): %.2f;", location.getLatitude(), location.getLongitude(), location.hasAltitude(), location.getAltitude()));
+
+                float lat = (float) location.getLatitude();
+                float lng = (float) location.getLongitude();
+
+                Intent intent = new Intent(context, SelectLocationActivity.class);
+                startActivityForResult(intent, CreateRecordActivity.ACTION_GET_LOCATION_FROM_MAP);
             }
         });
 

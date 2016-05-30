@@ -9,8 +9,7 @@ import android.support.v7.widget.Toolbar;
 import com.github.eternaldeiwos.biomapapp.R;
 
 public class CreateRecordActivity extends BaseActivity{
-
-
+    public static final int ACTION_GET_LOCATION_FROM_MAP = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

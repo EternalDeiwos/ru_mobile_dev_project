@@ -43,20 +43,42 @@
             android:value="com.github.eternaldeiwos.biomapapp" />
 
         <activity
-            android:name="com.github.eternaldeiwos.biomapapp.AuthenticatorActivity"
-            android:label="@string/title_activity_authenticator"></activity>
+            android:name=".AuthenticatorActivity"
+            android:label="@string/title_activity_authenticator" />
 
         <service android:name=".AuthenticatorService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
-            <meta-data android:name="android.accounts.AccountAuthenticator"
-                android:resource="@xml/authenticator"/>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
         </service>
+
         <activity
             android:name="com.github.prawncake.biomapapp.CreateRecordActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name="com.github.prawncake.biomapapp.ViewRecordsActivity"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name="com.github.prawncake.biomapapp.ViewRecordsActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".SelectLocationActivity"
+            android:label="@string/title_activity_select_location">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.github.prawncake.biomapapp.CreateRecordActivity" />
+        </activity>
     </application>
 
 </manifest>
