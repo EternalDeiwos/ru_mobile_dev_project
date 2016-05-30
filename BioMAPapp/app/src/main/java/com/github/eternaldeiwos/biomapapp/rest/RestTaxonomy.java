@@ -46,6 +46,10 @@ public class RestTaxonomy {
     }
 
     public static void getTaxonomy(Project project, Callback<Map<String, Taxonomy>> callback) {
+        getTaxonomy(project.toString(), callback);
+    }
+
+    public static void getTaxonomy(String project, Callback<Map<String, Taxonomy>> callback) {
         Call<Map<String, Taxonomy>> call = getInstance().getProjects(project.toString());
         call.enqueue(callback);
     }

@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.github.eternaldeiwos.biomapapp.Authenticator;
 import com.github.eternaldeiwos.biomapapp.AuthenticatorActivity;
 import com.github.eternaldeiwos.biomapapp.AuthenticatorService;
+import com.github.eternaldeiwos.biomapapp.DatabaseListAdapter;
 import com.github.eternaldeiwos.biomapapp.LocationProvider;
 import com.github.eternaldeiwos.biomapapp.SelectLocationActivity;
 import com.github.eternaldeiwos.biomapapp.model.Database;
@@ -39,7 +40,9 @@ import java.util.Locale;
 import java.util.Map;
 
 import com.github.eternaldeiwos.biomapapp.R;
+import com.orm.SugarApp;
 import com.orm.SugarContext;
+import com.orm.SugarDb;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,6 +61,7 @@ public class HomeActivity extends BaseActivity {
     private Button addDBBtn;
 
     ListView list;
+    DatabaseListAdapter adapter;
     List<String> dbName;
     List <Integer> dbPicture;
 
@@ -67,14 +71,15 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        SugarContext.init(this);
+
         dbName = new ArrayList<String>();
         dbPicture = new ArrayList<Integer>();
 
+        list = (ListView) findViewById(R.id.listView);
         nameField = (TextView) findViewById(R.id.nameField);
         aduField = (TextView) findViewById(R.id.aduField);
         addDBBtn = (Button) findViewById(R.id.button);
-
-        SugarContext.init(this);
 
         final Button contextMenuButton = (Button)findViewById(R.id.button4);
 
@@ -87,8 +92,12 @@ public class HomeActivity extends BaseActivity {
             }
         }
         );
+        adapter = new DatabaseListAdapter(this);
+        list.setAdapter(adapter);
 
         registerForContextMenu(contextMenuButton);
+
+
         //TODO: set what happens when a user clicks on a list item
     }
 
@@ -119,7 +128,6 @@ public class HomeActivity extends BaseActivity {
                 return false;
         }
     }
-
 
     public void gregsLoginStuff()
     {
@@ -194,10 +202,12 @@ public class HomeActivity extends BaseActivity {
             {
                 Toast.makeText(this, "Database added", Toast.LENGTH_LONG).show();
 
-                String dbName = data.getStringExtra("name");
-                String uri = data.getStringExtra("uri");
+                String name = data.getStringExtra("name");
+                String project = data.getStringExtra("db_name");
 
-
+                Database db = new Database(project, name);
+                db.save();
+                adapter.notifyDataSetChanged();
             }
             if(resultCode == Activity.RESULT_CANCELED)
             {

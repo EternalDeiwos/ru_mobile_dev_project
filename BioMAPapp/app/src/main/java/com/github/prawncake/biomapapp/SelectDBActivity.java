@@ -23,6 +23,7 @@ public class SelectDBActivity extends BaseActivity
 {
     String [] projectsNameString;
     Uri [] projectImageUri;
+    String [] projectsString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,7 +40,7 @@ public class SelectDBActivity extends BaseActivity
                 ListView list;
                 Map<String,Project> allProjects =  response.body();
 
-                String [] projectsString = new String[allProjects.keySet().size()];
+                projectsString = new String[allProjects.keySet().size()];
                 projectsNameString = new String[allProjects.keySet().size()];
                 projectImageUri = new Uri[allProjects.keySet().size()];
 
@@ -63,7 +64,7 @@ public class SelectDBActivity extends BaseActivity
                         Toast.makeText(SelectDBActivity.this, "You Clicked at " +position, Toast.LENGTH_SHORT).show();
                         Intent newProject = new Intent();
                         newProject.putExtra("name",projectsNameString[position]);
-                        newProject.putExtra("uri",projectImageUri[position].toString());
+                        newProject.putExtra("db_name", projectsString[position]);
                         setResult(Activity.RESULT_OK, newProject);
                         finish();
                     }
@@ -73,7 +74,7 @@ public class SelectDBActivity extends BaseActivity
             @Override
             public void onFailure(Call<Map<String, Project>> call, Throwable t)
             {
-
+                t.printStackTrace();
             }
         });
     }

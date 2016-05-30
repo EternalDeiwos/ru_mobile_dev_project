@@ -28,14 +28,6 @@ public class Taxonomy {
         this.project = project;
     }
 
-    public Taxonomy(String taxon_id, String taxon_name, String rank, String common_name, Project project) {
-        this.taxon_id = taxon_id;
-        this.taxon_name = taxon_name;
-        this.rank = rank;
-        this.common_name = common_name;
-        this.project = project.toString();
-    }
-
     @Override
     public String toString() {
         return this.common_name;

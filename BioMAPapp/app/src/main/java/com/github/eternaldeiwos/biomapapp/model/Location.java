@@ -27,8 +27,6 @@ public class Location {
 
     public Location() { /* default */ }
 
-    public boolean isSuccess() { return this.status == ResponseType.OK; }
-
     public LocationEntry getBestEntry() {
         LocationEntry best = entries.size() > 0
                 ? entries.get(0)

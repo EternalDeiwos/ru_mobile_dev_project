@@ -13,6 +13,7 @@ import com.github.eternaldeiwos.biomapapp.R;
 import com.github.eternaldeiwos.biomapapp.helper.ImageDownloadHelper;
 import com.github.eternaldeiwos.biomapapp.model.Project;
 
+import java.io.File;
 import java.util.Map;
 
 /**
