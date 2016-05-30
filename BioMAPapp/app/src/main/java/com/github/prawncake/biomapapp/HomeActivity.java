@@ -3,52 +3,28 @@ package com.github.prawncake.biomapapp;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
 import android.app.Activity;
-import android.accounts.Account;
-import android.accounts.AccountManager;
-import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.github.eternaldeiwos.biomapapp.LoginActivity;
-import com.github.eternaldeiwos.biomapapp.Authenticator;
-import com.github.eternaldeiwos.biomapapp.AuthenticatorActivity;
-import com.github.eternaldeiwos.biomapapp.AuthenticatorService;
-import com.github.eternaldeiwos.biomapapp.DatabaseListAdapter;
-import com.github.eternaldeiwos.biomapapp.LocationProvider;
-import com.github.eternaldeiwos.biomapapp.SelectLocationActivity;
-import com.github.eternaldeiwos.biomapapp.model.Database;
-import com.github.eternaldeiwos.biomapapp.model.Permission;
-import com.github.eternaldeiwos.biomapapp.model.Project;
-import com.github.eternaldeiwos.biomapapp.model.User;
-import com.github.eternaldeiwos.biomapapp.rest.RestProject;
-import com.github.eternaldeiwos.biomapapp.rest.RestUser;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import com.github.eternaldeiwos.biomapapp.helper.API;
+import com.github.eternaldeiwos.biomapapp.helper.dbHelper;
 
 import com.github.eternaldeiwos.biomapapp.R;
-import com.orm.SugarApp;
+import com.github.eternaldeiwos.biomapapp.model.Database;
 import com.orm.SugarContext;
-import com.orm.SugarDb;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.ArrayList;
 
 public class HomeActivity extends BaseActivity {
 
@@ -61,41 +37,51 @@ public class HomeActivity extends BaseActivity {
     private Button addDBBtn;
 
     ListView list;
-    DatabaseListAdapter adapter;
-    List<String> dbName;
-    List <Integer> dbPicture;
-
+    dbHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        db = new dbHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         SugarContext.init(this);
         first_time_check();
 
-        dbName = new ArrayList<String>();
-        dbPicture = new ArrayList<Integer>();
+        list = (ListView) findViewById(R.id.listView);
+
+
+
+        Database[] projectDatabases = new Database[db.getEntryCount()];
+        ArrayList<Database> projectDatabasesList = db.getUserDataProjects();
+
+        projectDatabases = projectDatabasesList.toArray(projectDatabases);
+
+        String []projectNames = new String [db.getEntryCount()];
+        Uri[] projectUris = new Uri [db.getEntryCount()];
+
+        for (int i =0; i<db.getEntryCount(); i++)
+        {
+            projectNames[i] = projectDatabases[i].name;
+            projectUris[i] =  Uri.parse(API.ADU_VMUS_URL + "images/" + projectDatabases[i].project + "_logo.png");
+        }
 
         list = (ListView) findViewById(R.id.listView);
+        custom_database_list projects = new custom_database_list(this, projectNames, projectUris);
+        list.setAdapter(projects);
         addDBBtn = (Button) findViewById(R.id.button);
 
-        final Button contextMenuButton = (Button)findViewById(R.id.button4);
-
-        contextMenuButton.setOnClickListener(new View.OnClickListener()
+        registerForContextMenu(list);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
-            public void onClick(View view)
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                contextMenuButton.performLongClick();
+                list.performLongClick();
+                //Toast.makeText(HomeActivity.this, "Hello", Toast.LENGTH_SHORT).show();
             }
         }
         );
-        adapter = new DatabaseListAdapter(this);
-        list.setAdapter(adapter);
-
-        registerForContextMenu(contextMenuButton);
-
 
         //TODO: set what happens when a user clicks on a list item
     }
@@ -230,10 +216,26 @@ public class HomeActivity extends BaseActivity {
 
                 String name = data.getStringExtra("name");
                 String project = data.getStringExtra("db_name");
+                db.addProject(new Database(name,project));
 
-                Database db = new Database(project, name);
-                db.save();
-                adapter.notifyDataSetChanged();
+                Database[] projectDatabases = new Database[db.getEntryCount()];
+                ArrayList<Database> projectDatabasesList = db.getUserDataProjects();
+
+                projectDatabases = projectDatabasesList.toArray(projectDatabases);
+
+                String []projectNames = new String [db.getEntryCount()];
+                Uri[] projectUris = new Uri [db.getEntryCount()];
+
+                for (int i =0; i<db.getEntryCount(); i++)
+                {
+                    projectNames[i] = projectDatabases[i].name;
+                    projectUris[i] =  Uri.parse(API.ADU_VMUS_URL + "images/" + projectDatabases[i].project + "_logo.png");
+                }
+
+                list = (ListView) findViewById(R.id.listView);
+                custom_database_list projects = new custom_database_list(this, projectNames, projectUris);
+                list.setAdapter(projects);
+
             }
             if(resultCode == Activity.RESULT_CANCELED)
             {

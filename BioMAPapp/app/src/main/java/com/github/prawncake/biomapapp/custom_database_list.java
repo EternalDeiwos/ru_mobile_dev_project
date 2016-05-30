@@ -43,7 +43,8 @@ public class custom_database_list extends ArrayAdapter<String>
 
     }
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(int position, View view, ViewGroup parent)
+    {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView= inflater.inflate(R.layout.single_list_item, null, true);
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
