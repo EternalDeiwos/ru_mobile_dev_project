@@ -6,6 +6,7 @@ import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -191,23 +192,12 @@ public class HomeActivity extends BaseActivity {
         {
             if(resultCode == Activity.RESULT_OK)
             {
-                String db = data.getStringExtra("dbName");
-                dbName.add(db);
-                int num =0;
-                num = data.getIntExtra("dbPic",num);
-                dbPicture.add(num);
-
-                String [] tmpStringArray = new String[dbName.size()];
-                dbName.toArray(tmpStringArray);
-
-                Integer [] tmpIntArray = new Integer[dbPicture.size()];
-                dbPicture.toArray(tmpIntArray);
-
-                custom_database_list adapter = new custom_database_list(HomeActivity.this,tmpStringArray, tmpIntArray);
-                list=(ListView)findViewById(R.id.listView);
-                list.setAdapter(adapter);
-
                 Toast.makeText(this, "Database added", Toast.LENGTH_LONG).show();
+
+                String dbName = data.getStringExtra("name");
+                String uri = data.getStringExtra("uri");
+
+
             }
             if(resultCode == Activity.RESULT_CANCELED)
             {

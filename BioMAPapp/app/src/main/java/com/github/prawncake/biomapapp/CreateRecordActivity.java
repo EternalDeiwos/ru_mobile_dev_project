@@ -75,8 +75,6 @@ public class CreateRecordActivity extends BaseActivity{
         });
     }
 
-
-
     public void showDatePickerDialog(View view)
     {
         DialogFragment newFragment = new DatePickerFragment();

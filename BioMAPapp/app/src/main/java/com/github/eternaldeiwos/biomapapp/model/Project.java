@@ -19,15 +19,22 @@ public class Project extends SugarRecord {
 
     public Project() { /* default */ }
 
-    public Project(String acronym, String db_name, String description, String date_started) {
+    public Project(String acronym, String db_name, String description, String date_started)
+    {
         this.acronym = acronym;
         this.db_name = db_name;
         this.description = description;
         this.date_started = date_started;
     }
 
-    public Uri getImageURI() {
+    public Uri getImageURI()
+    {
         return Uri.parse(API.ADU_VMUS_URL + "images/" + db_name + "_logo.png");
+    }
+
+    public String getAcronym()
+    {
+        return this.acronym;
     }
 
     @Override
