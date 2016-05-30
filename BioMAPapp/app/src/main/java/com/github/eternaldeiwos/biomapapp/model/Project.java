@@ -1,5 +1,7 @@
 package com.github.eternaldeiwos.biomapapp.model;
 
+import android.net.Uri;
+
 import com.github.eternaldeiwos.biomapapp.helper.API;
 import com.orm.SugarRecord;
 
@@ -24,8 +26,8 @@ public class Project extends SugarRecord {
         this.date_started = date_started;
     }
 
-    public URI getImageURI() {
-        return URI.create(API.ADU_VMUS_URL + "images/" + db_name + "_logo.png");
+    public Uri getImageURI() {
+        return Uri.parse(API.ADU_VMUS_URL + "images/" + db_name + "_logo.png");
     }
 
     @Override

@@ -26,9 +26,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-public class CreateRecordActivity extends BaseActivity
-{
+public class CreateRecordActivity extends BaseActivity{
+    public static final int ACTION_GET_LOCATION_FROM_MAP = 101;
 
     String userChosenTask;
     int imageNum;

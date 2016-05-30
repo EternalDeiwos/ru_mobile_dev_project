@@ -1,17 +1,10 @@
 package com.github.eternaldeiwos.biomapapp.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import com.orm.SugarRecord;
-
-import java.io.IOException;
-
 /**
  * Created by glinklater on 2016/05/28.
  */
 
-public class Permission extends SugarRecord {
+public class Permission {
     public String app_name;
     public boolean insert = false;
     public boolean select = false;

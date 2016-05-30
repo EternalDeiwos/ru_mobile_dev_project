@@ -21,6 +21,9 @@ import com.github.eternaldeiwos.biomapapp.rest.RestUser;
 
 public class Authenticator extends AbstractAccountAuthenticator {
     public final static String KEY_ADU_NUMBER = "adu_number";
+    public final static String KEY_USER_NAME = "first_name";
+    public final static String KEY_USER_SURNAME = "surname";
+    public final static String KEY_USER_EMAIL = "email";
     Context mContext;
 
     public Authenticator(Context context) {
@@ -61,11 +64,6 @@ public class Authenticator extends AbstractAccountAuthenticator {
             final String adu = am.getUserData(account, KEY_ADU_NUMBER);
             if (password != null) {
                 User u = RestUser.getUser(adu, account.name, HashHelper.hashMD5(password));
-                try {
-                    if (User.find(User.class, "adu_number = ?", adu).isEmpty()) u.save();
-                } catch (SQLiteException sqle) {
-                    sqle.printStackTrace();
-                }
                 authToken = u.token;
             }
         }
