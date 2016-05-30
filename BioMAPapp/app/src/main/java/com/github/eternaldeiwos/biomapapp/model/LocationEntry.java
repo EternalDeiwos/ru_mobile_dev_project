@@ -38,21 +38,21 @@ public class LocationEntry implements Comparable<LocationEntry> {
         return this.bestType().compareTo(another.bestType());
     }
 
-    public AddressComponent[] getAddressComponents(LocationType type) {
-        List<AddressComponent> list = new LinkedList<>();
-        for (AddressComponent c : addressComponents) {
-            boolean add = false;
-            for (LocationType t : c.types) {
-                if (t.compareTo(type) == 0) {
-                    add = true;
-                    break;
+    public AddressComponent getBestAddressComponent(LocationType type) {
+        for (AddressComponent c : addressComponents)
+            for (LocationType t : c.types)
+                if (t.compareTo(type) == 0) return c;
+        return null;
+    }
+
+    public AddressComponent getBestAddressComponent(LocationType[] types) {
+        for (LocationType type : types) {
+            for (AddressComponent c : addressComponents) {
+                for (LocationType t : c.types) {
+                    if (t.compareTo(type) == 0) return c;
                 }
             }
-            if (add) {
-                list.add(c);
-            }
         }
-
-        return (AddressComponent[]) list.toArray();
+        return null;
     }
 }

@@ -140,6 +140,7 @@ public class LocationTypeAdapter extends TypeAdapter<Location> {
             JsonArray typesJson = o.getAsJsonArray("types");
             List<LocationType> types = new ArrayList<>(typesJson.size());
             for (JsonElement te : typesJson) {
+                System.err.println(te.getAsString());
                 types.add(LocationType.getEnum(te.getAsString()));
             }
 

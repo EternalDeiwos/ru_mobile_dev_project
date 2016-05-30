@@ -17,12 +17,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
+import com.github.eternaldeiwos.biomapapp.LocationProvider;
 import com.github.eternaldeiwos.biomapapp.R;
 import com.github.eternaldeiwos.biomapapp.SelectLocationActivity;
+import com.github.eternaldeiwos.biomapapp.model.AddressComponent;
 import com.github.eternaldeiwos.biomapapp.model.Location;
+import com.github.eternaldeiwos.biomapapp.model.LocationEntry;
+import com.github.eternaldeiwos.biomapapp.model.LocationType;
 import com.github.eternaldeiwos.biomapapp.rest.RestReverseGeocode;
 
 import java.io.ByteArrayOutputStream;
@@ -85,6 +90,58 @@ public class CreateRecordActivity extends BaseActivity{
             public void onTabReselected(TabLayout.Tab tab)
             {
 
+            }
+        });
+
+        LocationProvider.requestSingleUpdate(this, new LocationProvider.LocationCallback() {
+            @Override
+            public void onNewLocationAvailable(final android.location.Location location) {
+                RestReverseGeocode.getLocation(
+                        (float) location.getLatitude(),
+                        (float) location.getLongitude(),
+                        new Callback<Location>() {
+                    @Override
+                    public void onResponse(Call<Location> call, Response<Location> response) {
+                        Location loc = response.body();
+                        LocationEntry bestLocationEntry = loc.getBestEntry();
+
+                        AddressComponent town = bestLocationEntry.getBestAddressComponent(
+                                new LocationType[] {
+                                        LocationType.SUBLOCALITY,
+                                        LocationType.LOCALITY,
+                                        LocationType.TOWN,
+                                        LocationType.DISTRICT
+                                });
+
+                        AddressComponent province = bestLocationEntry
+                                .getBestAddressComponent(LocationType.PROVINCE);
+
+                        AddressComponent country = bestLocationEntry
+                                .getBestAddressComponent(LocationType.COUNTRY);
+
+                        Log.d("LOCATION", bestLocationEntry.address);
+
+                        EditText mTown, mProvince, mCountry, mGPS;
+                        mTown = (EditText) findViewById(R.id.Town);
+                        mProvince = (EditText) findViewById(R.id.Province);
+                        mCountry = (EditText) findViewById(R.id.Country);
+                        mGPS = (EditText) findViewById(R.id.GPS);
+
+                        if (mGPS != null)
+                            mGPS.setText((location.getLatitude() + "," + location.getLongitude()));
+                        if (mTown != null)
+                            mTown.setText(town.long_name);
+                        if (mProvince != null)
+                            mProvince.setText(province.long_name);
+                        if (mCountry != null)
+                            mCountry.setText(country.long_name);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Location> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
             }
         });
     }
@@ -259,49 +316,85 @@ public class CreateRecordActivity extends BaseActivity{
         theText.setText(Uri.fromFile(destination).toString());
     }
 
-//    @Override
-//    public void onSaveInstanceState(Bundle savedInstanceState)
-//    {
-//        TextView pic1 = (TextView)findViewById(R.id.picture1);
-//        TextView pic2 = (TextView)findViewById(R.id.picture2);
-//        TextView pic3 = (TextView)findViewById(R.id.picture3);
-//        // Save UI state changes to the savedInstanceState.
-//        // This bundle will be passed to onCreate if the process is
-//        // killed and restarted.
-//
-//        savedInstanceState.putString("Picture1", pic1.getText().toString());
-//        savedInstanceState.putString("Picture2", pic2.getText().toString());
-//        savedInstanceState.putString("Picture3", pic3.getText().toString());
-//
-//        // etc.
-//        super.onSaveInstanceState(savedInstanceState);
-//    }
-//    //onRestoreInstanceState
-//    @Override
-//    public void onRestoreInstanceState(Bundle savedInstanceState)
-//    {
-//        TextView pic1 = (TextView)findViewById(R.id.picture1);
-//        TextView pic2 = (TextView)findViewById(R.id.picture2);
-//        TextView pic3 = (TextView)findViewById(R.id.picture3);
-//        super.onRestoreInstanceState(savedInstanceState);
-//        // Restore UI state from the savedInstanceState.
-//        // This bundle has also been passed to onCreate.
-//        pic1.setText(savedInstanceState.getString("Picture1"));
-//        pic2.setText(savedInstanceState.getString("Picture2"));
-//        pic3.setText(savedInstanceState.getString("Picture3"));
-//    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState)
+    {
+        TextView pic1 = (TextView)findViewById(R.id.picture1);
+        TextView pic2 = (TextView)findViewById(R.id.picture2);
+        TextView pic3 = (TextView)findViewById(R.id.picture3);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+
+        if (pic1 != null)
+            savedInstanceState.putString("Picture1", pic1.getText().toString());
+        if (pic2 != null)
+            savedInstanceState.putString("Picture2", pic2.getText().toString());
+        if (pic3 != null)
+            savedInstanceState.putString("Picture3", pic3.getText().toString());
+
+        // etc.
+        super.onSaveInstanceState(savedInstanceState);
+    }
+    //onRestoreInstanceState
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        TextView pic1 = (TextView)findViewById(R.id.picture1);
+        TextView pic2 = (TextView)findViewById(R.id.picture2);
+        TextView pic3 = (TextView)findViewById(R.id.picture3);
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore UI state from the savedInstanceState.
+        // This bundle has also been passed to onCreate.
+        if (pic1 != null)
+            pic1.setText(savedInstanceState.getString("Picture1"));
+        if (pic2 != null)
+            pic2.setText(savedInstanceState.getString("Picture2"));
+        if (pic3 != null)
+            pic3.setText(savedInstanceState.getString("Picture3"));
+    }
 
     public void onGoogleMapsResult(Intent intent) {
         Bundle results = intent.getExtras();
-        float lat = results.getFloat(KEY_LAT);
-        float lng = results.getFloat(KEY_LNG);
+        final float lat = results.getFloat(KEY_LAT);
+        final float lng = results.getFloat(KEY_LNG);
         Log.d("MAPS", String.format(Locale.US, "lat: %.6f; lng: %.6f;", lat, lng));
         RestReverseGeocode.getLocation(lat, lng, new Callback<Location>() {
             @Override
             public void onResponse(Call<Location> call, Response<Location> response) {
                 Location loc = response.body();
-                Log.d("LOCATION", loc.status.toString());
-                Log.d("LOCATION", loc.getBestEntry().address);
+                LocationEntry bestLocationEntry = loc.getBestEntry();
+
+                AddressComponent town = bestLocationEntry.getBestAddressComponent(
+                        new LocationType[] {
+                                LocationType.SUBLOCALITY,
+                                LocationType.LOCALITY,
+                                LocationType.TOWN,
+                                LocationType.DISTRICT
+                        });
+
+                AddressComponent province = bestLocationEntry
+                        .getBestAddressComponent(LocationType.PROVINCE);
+
+                AddressComponent country = bestLocationEntry
+                        .getBestAddressComponent(LocationType.COUNTRY);
+
+                Log.d("LOCATION", bestLocationEntry.address);
+
+                EditText mTown, mProvince, mCountry, mGPS;
+                mTown = (EditText) findViewById(R.id.Town);
+                mProvince = (EditText) findViewById(R.id.Province);
+                mCountry = (EditText) findViewById(R.id.Country);
+                mGPS = (EditText) findViewById(R.id.GPS);
+
+                if (mGPS != null)
+                    mGPS.setText(String.format(Locale.US, "%.6f,%.6f", lat, lng));
+                if (mTown != null)
+                    mTown.setText(town.long_name);
+                if (mProvince != null)
+                    mProvince.setText(province.long_name);
+                if (mCountry != null)
+                    mCountry.setText(country.long_name);
             }
 
             @Override
