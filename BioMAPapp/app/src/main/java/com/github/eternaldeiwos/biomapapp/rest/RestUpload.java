@@ -166,20 +166,10 @@ public class RestUpload {
                         fields.put(field_name, getRequestBody(context, val));
                     }
                     break;
-                case "recordstatus":
-                    val = null;
-                    try {
-                        val = f.get(r).toString();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } finally {
-                        fields.put(field_name, getRequestBody(context, val));
-                    }
-                    break;
                 default:
                     val = null;
                     try {
-                        val = (String) f.get(r);
+                        val = f.get(r).toString();
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     } finally {
