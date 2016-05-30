@@ -9,23 +9,23 @@ import java.util.List;
 
 public class LocationEntry implements Comparable<LocationEntry> {
     public String address;
-    public LocationType[] types;
-    public AddressComponent[] addressComponents;
+    public List<LocationType> types;
+    public List<AddressComponent> addressComponents;
 
     @Override
     public String toString() {
         return address;
     }
 
-    public LocationEntry(String address, LocationType[] types, AddressComponent[] addressComponents) {
+    public LocationEntry(String address, List<LocationType> types, List<AddressComponent> addressComponents) {
         this.address = address;
         this.types = types;
         this.addressComponents = addressComponents;
     }
 
     public LocationType bestType() {
-        LocationType bestType = types.length > 0
-                ? types[0]
+        LocationType bestType = types.size() > 0
+                ? types.get(0)
                 : null;
         for (LocationType t : types) {
             if (t.compareTo(bestType) > 0) bestType = t;
@@ -38,21 +38,21 @@ public class LocationEntry implements Comparable<LocationEntry> {
         return this.bestType().compareTo(another.bestType());
     }
 
-    public AddressComponent[] getAddressComponents(LocationType type) {
-        List<AddressComponent> list = new LinkedList<>();
-        for (AddressComponent c : addressComponents) {
-            boolean add = false;
-            for (LocationType t : c.types) {
-                if (t.compareTo(type) == 0) {
-                    add = true;
-                    break;
+    public AddressComponent getBestAddressComponent(LocationType type) {
+        for (AddressComponent c : addressComponents)
+            for (LocationType t : c.types)
+                if (t.compareTo(type) == 0) return c;
+        return null;
+    }
+
+    public AddressComponent getBestAddressComponent(LocationType[] types) {
+        for (LocationType type : types) {
+            for (AddressComponent c : addressComponents) {
+                for (LocationType t : c.types) {
+                    if (t.compareTo(type) == 0) return c;
                 }
             }
-            if (add) {
-                list.add(c);
-            }
         }
-
-        return (AddressComponent[]) list.toArray();
+        return null;
     }
 }

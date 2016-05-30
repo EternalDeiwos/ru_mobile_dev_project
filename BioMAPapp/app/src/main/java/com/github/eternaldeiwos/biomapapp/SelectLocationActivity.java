@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.github.prawncake.biomapapp.BaseActivity;
+import com.github.prawncake.biomapapp.CreateRecordActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -37,12 +38,6 @@ public class SelectLocationActivity extends BaseActivity implements OnMapReadyCa
         button = (FloatingActionButton) findViewById(R.id.mapOkButton);
         button.setFocusable(false);
         button.setFocusableInTouchMode(false);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finishWithResult();
-            }
-        });
     }
 
 
@@ -68,6 +63,12 @@ public class SelectLocationActivity extends BaseActivity implements OnMapReadyCa
                         .position(my_location)
                         .title("My Location");
                 mMarker = mMap.addMarker(mMarkerOptions);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finishWithResult();
+                    }
+                });
             }
         });
 
@@ -86,8 +87,8 @@ public class SelectLocationActivity extends BaseActivity implements OnMapReadyCa
 
     private void finishWithResult() {
         Bundle response = new Bundle();
-        response.putFloat("lat", (float) mMarker.getPosition().latitude);
-        response.putFloat("lng", (float) mMarker.getPosition().longitude);
+        response.putFloat(CreateRecordActivity.KEY_LAT, (float) mMarker.getPosition().latitude);
+        response.putFloat(CreateRecordActivity.KEY_LNG, (float) mMarker.getPosition().longitude);
         Intent intent = new Intent();
         intent.putExtras(response);
         setResult(RESULT_OK, intent);
