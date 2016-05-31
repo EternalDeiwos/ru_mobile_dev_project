@@ -163,7 +163,8 @@ public class RestUpload {
         );
     }
 
-    private static MultipartBody.Part getPartFromFileUri(Context context, String key, Uri fileUri) {
+    private static MultipartBody.Part getPartFromFileUri(Context context, String key, Uri fileUri)
+    {
         if (fileUri == null) return null;
         File file = FileUtils.getFile(context, fileUri);
         RequestBody request = RequestBody.create(formdatatype, file);
@@ -171,7 +172,8 @@ public class RestUpload {
         return part;
     }
 
-    private static RequestBody getRequestBody(Context context, String value) {
+    private static RequestBody getRequestBody(Context context, String value)
+    {
         if (value == null) return RequestBody.create(formdatatype, "");
         RequestBody body = RequestBody.create(formdatatype, value);
         return body;

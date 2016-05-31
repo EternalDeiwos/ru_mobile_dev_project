@@ -61,7 +61,6 @@ public class SelectDBActivity extends BaseActivity
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
                     {
-                        Toast.makeText(SelectDBActivity.this, "You Clicked at " +position, Toast.LENGTH_SHORT).show();
                         Intent newProject = new Intent();
                         newProject.putExtra("name",projectsNameString[position]);
                         newProject.putExtra("db_name", projectsString[position]);
