@@ -86,6 +86,7 @@ public class CreateRecordActivity extends BaseActivity{
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
         {
             @Override
@@ -97,6 +98,12 @@ public class CreateRecordActivity extends BaseActivity{
             @Override
             public void onTabUnselected(TabLayout.Tab tab)
             {
+                if(tab.getText()=="Location")
+                    setLocationEditTexts();
+                if(tab.getText()=="Specimen")
+                    setSpecimenTexts();
+//                if(tab.getText()=="Media")
+//                    setMediaTexts();
 
             }
 
@@ -457,6 +464,34 @@ public class CreateRecordActivity extends BaseActivity{
         return true;
     }
 
+    String mGPS;
+    String mCountry ;
+    String mProvince;
+    String mTown ;
+    String mLocality;
+
+    String mSpecies ;
+    String mSpeciesDescription;
+//    String mDate;
+    String mNestCount;
+
+    public void setSpecimenTexts()
+    {
+        mSpecies = ((EditText) findViewById(R.id.Species)).getText().toString();
+        mSpeciesDescription = ((EditText) findViewById(R.id.Species)).getText().toString();
+        mNestCount =((EditText) findViewById(R.id.NestCount)).getText().toString();
+
+    }
+    public void setLocationEditTexts()
+    {
+        mCountry = ((EditText) findViewById(R.id.Country)).getText().toString();
+        mProvince = ((EditText) findViewById(R.id.Province)).getText().toString();
+        mTown = ((EditText) findViewById(R.id.Town)).getText().toString();
+        mLocality = ((EditText) findViewById(R.id.Locality)).getText().toString();
+        mGPS = ((EditText) findViewById(R.id.GPS)).getText().toString();
+
+    }
+
     public Record pullDataFromActivity()
     {
         final Record r = new Record();
@@ -466,15 +501,15 @@ public class CreateRecordActivity extends BaseActivity{
         if (accounts != null && accounts.length > 0) acc = accounts[0];
         else throw new IllegalArgumentException();
 
-        EditText mCountry = (EditText) findViewById(R.id.Country);
-        EditText mProvince = (EditText) findViewById(R.id.Province);
-        EditText mTown = (EditText) findViewById(R.id.Town);
-        EditText mLocality = (EditText) findViewById(R.id.Locality);
-        EditText mSpecies = (EditText) findViewById(R.id.Species);
-        EditText mSpeciesDescription = (EditText) findViewById(R.id.SpeciesDescription);
-        EditText mGPS = (EditText) findViewById(R.id.GPS);
+//        EditText mCountry = (EditText) findViewById(R.id.Country);
+//        EditText mProvince = (EditText) findViewById(R.id.Province);
+//        EditText mTown = (EditText) findViewById(R.id.Town);
+//        EditText mLocality = (EditText) findViewById(R.id.Locality);
+//        EditText mSpecies = (EditText) findViewById(R.id.Species);
+//        EditText mSpeciesDescription = (EditText) findViewById(R.id.SpeciesDescription);
+//        EditText mGPS = (EditText) findViewById(R.id.GPS);
         EditText mDate = (EditText) findViewById(R.id.CaptureDate);
-        EditText mNestCount = (EditText) findViewById(R.id.NestCount);
+//        EditText mNestCount = (EditText) findViewById(R.id.NestCount);
 
         TextView mPicture1 = (TextView) findViewById(R.id.picture1);
         TextView mPicture2 = (TextView) findViewById(R.id.picture2);
@@ -491,10 +526,14 @@ public class CreateRecordActivity extends BaseActivity{
         r.email = am.getUserData(acc, Authenticator.KEY_USER_EMAIL);
         r.project = getIntent().getStringExtra("project_acronym");
         r.token = "";
+
         AccountManagerFuture<Bundle> b = am.getAuthToken(acc, AuthenticatorActivity.ARG_AUTH_TYPE, null, this, null, null);
-        try {
+        try
+        {
             r.token = b.getResult().getString(AccountManager.KEY_AUTHTOKEN);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
 
@@ -516,15 +555,16 @@ public class CreateRecordActivity extends BaseActivity{
         }
 
         // Text fields
-        r.country = mCountry != null ? mCountry.getText().toString() : "";
-        r.province = mProvince != null ? mProvince.getText().toString() : "";
-        r.nearesttown = mTown != null ? mTown.getText().toString() : "";
-        r.locality = mLocality != null ? mLocality.getText().toString() : "";
-        r.userdet = mSpecies != null ? mSpecies.getText().toString() : "";
-        r.note = mSpeciesDescription != null ? mSpeciesDescription.getText().toString() : "";
+//        r.country = mCountry != null ? mCountry.getText().toString() : "";
+        r.country = mCountry;
+        r.province = mProvince;
+        r.nearesttown = mTown;
+        r.locality = mLocality;
+        r.userdet = mSpecies;
+        r.note = mSpeciesDescription;
 
         // gps
-        String[] latlng = mGPS != null ? mGPS.getText().toString().split(",") : null;
+        String[] latlng = mGPS != null ? mGPS.split(",") : null;
         if (latlng != null) {
             r.lat = Float.parseFloat(latlng[0]);
             r.lng = Float.parseFloat(latlng[1]);
@@ -532,7 +572,7 @@ public class CreateRecordActivity extends BaseActivity{
         r.source = Record.GPS_SOURCE_PHONE;
 
         // date
-        String[] date = mDate != null ? mDate.getText().toString().split("/") : null;
+        String[] date = mDate.getText().toString().split("/");
         if (date != null) {
             r.day = Integer.parseInt(date[0]);
             r.month = Integer.parseInt(date[1]);
@@ -540,7 +580,7 @@ public class CreateRecordActivity extends BaseActivity{
         }
 
         // misc
-        r.nestcount = mNestCount != null ? Integer.parseInt(mNestCount.getText().toString()) : 0;
+        r.nestcount = Integer.parseInt(mNestCount);
         r.nestsite = mNestSite != null ? mNestSite.getSelectedItem().toString() : "";
         r.roadkill = mRoadkill.isChecked();
         r.recordbasis = Record.BASIS_PHOTO;
