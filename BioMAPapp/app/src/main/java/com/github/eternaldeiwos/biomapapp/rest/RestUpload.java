@@ -35,12 +35,12 @@ public class RestUpload {
 
     public interface IRestUpload {
         @Multipart
-        @POST("insertrecord")
+        @POST("api/v1/insertrecord")
         Call<ResponseBody> upload(
-                @Part("images[]") MultipartBody.Part image1,
-                @Part("images[]") MultipartBody.Part image2,
-                @Part("images[]") MultipartBody.Part image3,
-                @Part("sound") MultipartBody.Part sound,
+                @Part MultipartBody.Part image1,
+                @Part MultipartBody.Part image2,
+                @Part MultipartBody.Part image3,
+                @Part MultipartBody.Part sound,
                 @Part("username") RequestBody username,
                 @Part("userid") RequestBody userid,
                 @Part("email") RequestBody email,
@@ -69,8 +69,10 @@ public class RestUpload {
                 @Part("institution_code") RequestBody institution_code,
                 @Part("collection") RequestBody collection_code,
                 @Part("recordbasis") RequestBody recordbasis, // SIGHTING or VMUS:CAMERA TRAP or VMUS
-                @Part("recordstatus") RequestBody recordstatus // 1) blank, 2) naturally occuring,
+                @Part("recordstatus") RequestBody recordstatus, // 1) blank, 2) naturally occuring,
                 // 3) re-introduced, 4) introduced, 5) feral, 6) cultivated, 7) exotic
+                @Part("token") RequestBody token,
+                @Part("API_KEY") RequestBody api_key
         );
     }
 
@@ -108,111 +110,56 @@ public class RestUpload {
     ) {
         formdatatype = MediaType.parse("multipart/form-data");
         LinkedList<MultipartBody.Part> parts = new LinkedList<>();
-        HashMap<String, RequestBody> fields = new HashMap<>();
 
         // put images into multipart parts
-        for (int i = 0; i < r.images.length; i++) {
-            parts.add(getPartFromFileUri(context, "images[]", r.images[i]));
+        for (int i = 0; i < 3; i++) {
+            parts.add(r.images.length > i ? getPartFromFileUri(context, "images[]", r.images[i]) : MultipartBody.Part.createFormData("images[]", ""));
         }
 
         // put sound into multipart parts
-        parts.add(getPartFromFileUri(context, "sound", r.sound));
+        parts.add(r.sound != null ? getPartFromFileUri(context, "sound", r.sound)
+                : MultipartBody.Part.createFormData("sound", ""));
+
+        System.err.println("ERMAHGERD!!! " + r.token);
+        r.debug();
 
         // and the rest of the mundane data into RequestBody objects
-        for (Field f : Record.class.getFields()) {
-            String field_name = f.getName();
-            String val;
-            switch (field_name) {
-                case "images":
-                case "sound":
-                    break; // Handled above => ignore here
-                case "roadkill":
-                    int roadkill = 0;
-                    try {
-                        roadkill = f.getBoolean(r)
-                                ? 1
-                                : 0;
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } finally {
-                        fields.put(field_name, getRequestBody(context, roadkill + ""));
-                    }
-                    break;
-                case "minelev":
-                case "maxelev":
-                case "year":
-                case "month":
-                case "day":
-                case "nestcount":
-                case "accuracy":
-                    val = null;
-                    try {
-                        val = f.getInt(r) + "";
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } finally {
-                        fields.put(field_name, getRequestBody(context, val));
-                    }
-                    break;
-                case "lat":
-                case "lng":
-                    val = null;
-                    try {
-                        val = String.format(java.util.Locale.US, "%.5f", f.getFloat(r));
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } finally {
-                        if (field_name.equals("lng")) field_name = "long";
-                        fields.put(field_name, getRequestBody(context, val));
-                    }
-                    break;
-                default:
-                    val = null;
-                    try {
-                        val = f.get(r).toString();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } finally {
-                        fields.put(field_name, getRequestBody(context, val));
-                    }
-                    break;
-            }
-        }
-
         return uploadService.upload(
                 parts.get(0),
                 parts.get(1),
                 parts.get(2),
                 parts.get(3),
-                fields.get("username"),
-                fields.get("userid"),
-                fields.get("email"),
-                fields.get("project"),
-                fields.get("observers"),
-                fields.get("country"),
-                fields.get("province"),
-                fields.get("nearesttown"),
-                fields.get("locality"),
-                fields.get("minelev"),
-                fields.get("maxelev"),
-                fields.get("lat"),
-                fields.get("long"),
-                fields.get("accuracy"),
-                fields.get("source"),
-                fields.get("year"),
-                fields.get("month"),
-                fields.get("day"),
-                fields.get("note"),
-                fields.get("userdet"),
-                fields.get("nest_count"),
-                fields.get("nest_site"),
-                fields.get("roadkill"),
-                fields.get("taxonid"),
-                fields.get("taxonname"),
-                fields.get("institution_code"),
-                fields.get("collection"),
-                fields.get("recordbasis"),
-                fields.get("recordstatus")
+                getRequestBody(context, r.username),
+                getRequestBody(context, r.userid),
+                getRequestBody(context, r.email),
+                getRequestBody(context, r.project),
+                getRequestBody(context, r.observers),
+                getRequestBody(context, r.country),
+                getRequestBody(context, r.province),
+                getRequestBody(context, r.nearesttown),
+                getRequestBody(context, r.locality),
+                getRequestBody(context, r.minelev + ""),
+                getRequestBody(context, r.maxelev + ""),
+                getRequestBody(context, r.lat + ""),
+                getRequestBody(context, r.lng + ""),
+                getRequestBody(context, r.accuracy + ""),
+                getRequestBody(context, r.source + ""),
+                getRequestBody(context, r.year + ""),
+                getRequestBody(context, r.month + ""),
+                getRequestBody(context, r.day + ""),
+                getRequestBody(context, r.note + ""),
+                getRequestBody(context, r.userdet + ""),
+                getRequestBody(context, r.nestcount + ""),
+                getRequestBody(context, r.nestsite + ""),
+                getRequestBody(context, r.roadkill ? 1 + "" : 0 + ""),
+                getRequestBody(context, r.taxonid + ""),
+                getRequestBody(context, r.taxonname + ""),
+                getRequestBody(context, r.institution_code + ""),
+                getRequestBody(context, r.collection_code + ""),
+                getRequestBody(context, r.recordbasis + ""),
+                getRequestBody(context, r.recordstatus.getValue()),
+                getRequestBody(context, r.token),
+                getRequestBody(context, API.API_KEY)
         );
     }
 
@@ -225,7 +172,7 @@ public class RestUpload {
     }
 
     private static RequestBody getRequestBody(Context context, String value) {
-        if (value == null) return null;
+        if (value == null) return RequestBody.create(formdatatype, "");
         RequestBody body = RequestBody.create(formdatatype, value);
         return body;
     }

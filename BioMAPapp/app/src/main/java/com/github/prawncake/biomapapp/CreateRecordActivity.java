@@ -1,5 +1,9 @@
 package com.github.prawncake.biomapapp;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.accounts.AccountManagerCallback;
+import android.accounts.AccountManagerFuture;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,18 +13,25 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.security.keystore.UserNotAuthenticatedException;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.github.eternaldeiwos.biomapapp.Authenticator;
+import com.github.eternaldeiwos.biomapapp.AuthenticatorActivity;
 import com.github.eternaldeiwos.biomapapp.LocationProvider;
 import com.github.eternaldeiwos.biomapapp.R;
 import com.github.eternaldeiwos.biomapapp.SelectLocationActivity;
@@ -28,7 +39,9 @@ import com.github.eternaldeiwos.biomapapp.model.AddressComponent;
 import com.github.eternaldeiwos.biomapapp.model.Location;
 import com.github.eternaldeiwos.biomapapp.model.LocationEntry;
 import com.github.eternaldeiwos.biomapapp.model.LocationType;
+import com.github.eternaldeiwos.biomapapp.model.Record;
 import com.github.eternaldeiwos.biomapapp.rest.RestReverseGeocode;
+import com.github.eternaldeiwos.biomapapp.rest.RestUpload;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -37,6 +50,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Locale;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,7 +63,7 @@ public class CreateRecordActivity extends BaseActivity{
     String userChosenTask;
     int imageNum;
     TextView theText;
-    Context mContext;
+    Activity mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -402,5 +416,143 @@ public class CreateRecordActivity extends BaseActivity{
                 t.printStackTrace();
             }
         });
+    }
+
+    public void submitRecord(View v)
+    {
+        Record submission = pullDataFromActivity();
+//        submission.debug();
+        if (verifyEssentialData(submission))
+            RestUpload.uploadRecord(this, submission, new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                {
+                    int res = response.code();
+                    Log.d("RESPONSE", res + "");
+                    ResponseBody body = response.body();
+                    try {
+                        System.err.println(body != null ? body.string() : response.message());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.err.println(body != null ? response.raw().message() : "");
+                    if (res==200)
+                    {
+                        Toast.makeText(mContext, "Yippy", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(mContext, "Didn't work :(", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t)
+                {
+                    t.printStackTrace();
+                }
+            });
+    }
+
+    public boolean verifyEssentialData(Record r)
+    {
+        return true;
+    }
+
+    public Record pullDataFromActivity()
+    {
+        final Record r = new Record();
+        AccountManager am = AccountManager.get(this);
+        Account[] accounts = am.getAccountsByType(AuthenticatorActivity.ACCOUNT_TYPE);
+        Account acc = null;
+        if (accounts != null && accounts.length > 0) acc = accounts[0];
+        else throw new IllegalArgumentException();
+
+        EditText mCountry = (EditText) findViewById(R.id.Country);
+        EditText mProvince = (EditText) findViewById(R.id.Province);
+        EditText mTown = (EditText) findViewById(R.id.Town);
+        EditText mLocality = (EditText) findViewById(R.id.Locality);
+        EditText mSpecies = (EditText) findViewById(R.id.Species);
+        EditText mSpeciesDescription = (EditText) findViewById(R.id.SpeciesDescription);
+        EditText mGPS = (EditText) findViewById(R.id.GPS);
+        EditText mDate = (EditText) findViewById(R.id.CaptureDate);
+        EditText mNestCount = (EditText) findViewById(R.id.NestCount);
+
+        TextView mPicture1 = (TextView) findViewById(R.id.picture1);
+        TextView mPicture2 = (TextView) findViewById(R.id.picture2);
+        TextView mPicture3 = (TextView) findViewById(R.id.picture3);
+
+        Spinner mStatus = (Spinner) findViewById(R.id.Status);
+        Spinner mNestSite = (Spinner) findViewById(R.id.NestSite);
+        CheckBox mRoadkill = (CheckBox) findViewById(R.id.Roadkill);
+
+        // Meta
+        r.username = am.getUserData(acc, Authenticator.KEY_USER_NAME) + " " +
+                am.getUserData(acc, Authenticator.KEY_USER_SURNAME);
+        r.userid = am.getUserData(acc, Authenticator.KEY_ADU_NUMBER);
+        r.email = am.getUserData(acc, Authenticator.KEY_USER_EMAIL);
+        r.project = getIntent().getStringExtra("project_acronym");
+        r.token = "";
+        AccountManagerFuture<Bundle> b = am.getAuthToken(acc, AuthenticatorActivity.ARG_AUTH_TYPE, null, this, null, null);
+        try {
+            r.token = b.getResult().getString(AccountManager.KEY_AUTHTOKEN);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //pics
+        int count = 0;
+        String[] pics_s = new String[3];
+        String pic_default = "Click to add picture";
+        pics_s[0] = mPicture1.getText().toString();
+        pics_s[1] = mPicture2.getText().toString();
+        pics_s[2] = mPicture3.getText().toString();
+        for (String s : pics_s) {
+            if (!(TextUtils.isEmpty(s) || s.equals(pic_default))) count++;
+        }
+        r.images = new Uri[count];
+        count = 0;
+        for (String s : pics_s) {
+            if (!(TextUtils.isEmpty(s) || s.equals(pic_default)))
+                r.images[count++] = Uri.parse(s);
+        }
+
+        // Text fields
+        r.country = mCountry != null ? mCountry.getText().toString() : "";
+        r.province = mProvince != null ? mProvince.getText().toString() : "";
+        r.nearesttown = mTown != null ? mTown.getText().toString() : "";
+        r.locality = mLocality != null ? mLocality.getText().toString() : "";
+        r.userdet = mSpecies != null ? mSpecies.getText().toString() : "";
+        r.note = mSpeciesDescription != null ? mSpeciesDescription.getText().toString() : "";
+
+        // gps
+        String[] latlng = mGPS != null ? mGPS.getText().toString().split(",") : null;
+        if (latlng != null) {
+            r.lat = Float.parseFloat(latlng[0]);
+            r.lng = Float.parseFloat(latlng[1]);
+        }
+        r.source = Record.GPS_SOURCE_PHONE;
+
+        // date
+        String[] date = mDate != null ? mDate.getText().toString().split("/") : null;
+        if (date != null) {
+            r.day = Integer.parseInt(date[0]);
+            r.month = Integer.parseInt(date[1]);
+            r.year = Integer.parseInt(date[2]);
+        }
+
+        // misc
+        r.nestcount = mNestCount != null ? Integer.parseInt(mNestCount.getText().toString()) : 0;
+        r.nestsite = mNestSite != null ? mNestSite.getSelectedItem().toString() : "";
+        r.roadkill = mRoadkill.isChecked();
+        r.recordbasis = Record.BASIS_PHOTO;
+        r.recordstatus = Record.OccurrenceStatus.getEnum(mStatus.getSelectedItem().toString());
+
+        //nulling
+        r.collection_code = "";
+        r.institution_code = "";
+        r.observers = "";
+        r.taxonid = "";
+        r.taxonname = "";
+
+        return r;
     }
 }

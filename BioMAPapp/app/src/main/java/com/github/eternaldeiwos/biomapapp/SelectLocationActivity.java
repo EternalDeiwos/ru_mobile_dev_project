@@ -38,6 +38,12 @@ public class SelectLocationActivity extends BaseActivity implements OnMapReadyCa
         button = (FloatingActionButton) findViewById(R.id.mapOkButton);
         button.setFocusable(false);
         button.setFocusableInTouchMode(false);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishWithResult();
+            }
+        });
     }
 
 
@@ -63,19 +69,14 @@ public class SelectLocationActivity extends BaseActivity implements OnMapReadyCa
                         .position(my_location)
                         .title("My Location");
                 mMarker = mMap.addMarker(mMarkerOptions);
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finishWithResult();
-                    }
-                });
             }
         });
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                mMarker.remove();
+                if (mMarker != null)
+                    mMarker.remove();
                 mMarkerOptions = new MarkerOptions()
                         .title("New Position")
                         .position(latLng);

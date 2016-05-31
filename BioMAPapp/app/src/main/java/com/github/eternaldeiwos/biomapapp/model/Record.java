@@ -4,7 +4,9 @@ import android.net.Uri;
 
 import com.orm.SugarRecord;
 
+import java.lang.reflect.Field;
 import java.net.URI;
+import java.util.Locale;
 
 /**
  * Created by glinklater on 2016/05/29.
@@ -86,6 +88,7 @@ public class Record extends SugarRecord {
     public String collection_code;
     public String recordbasis;
     public OccurrenceStatus recordstatus;
+    public String token;
 
     public Record(
             Uri[] images,
@@ -118,7 +121,8 @@ public class Record extends SugarRecord {
             String institution_code,
             String collection_code,
             String recordbasis,
-            OccurrenceStatus recordstatus
+            OccurrenceStatus recordstatus,
+            String token
     ) {
         this.images = images;
         this.sound = sound;
@@ -151,7 +155,18 @@ public class Record extends SugarRecord {
         this.collection_code = collection_code;
         this.recordbasis = recordbasis;
         this.recordstatus = recordstatus;
+        this.token = token;
     }
 
     public Record() { /* default */ }
+
+    public void debug() {
+        for (Field f : Record.class.getFields()) {
+            try {
+                System.err.println(String.format(Locale.US, "%s: %s", f.getName(), f.get(this).toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

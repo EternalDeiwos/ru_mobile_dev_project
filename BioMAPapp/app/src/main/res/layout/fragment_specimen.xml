@@ -51,6 +51,44 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/NestCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nest Count"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/NestSite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nest Site"
+                android:layout_marginTop="7dp"
+                android:entries="@array/nest_sites" />
+
+            <Spinner
+                android:id="@+id/Status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Status"
+                android:layout_marginTop="7dp"
+                android:entries="@array/record_status" />
+
+            <CheckBox
+                android:id="@+id/Roadkill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Roadkill?"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="10dp" />
+
 
         </LinearLayout>
     </ScrollView>

@@ -40,4 +40,22 @@
 
     <string name="internal_storage">Internal Storage</string>
     <string name="title_activity_select_location">Select Location</string>
+
+    <string-array name="nest_sites">
+        <item>N/A</item>
+        <item>tree</item>
+        <item>man-made</item>
+        <item>reed</item>
+        <item>other</item>
+    </string-array>
+
+    <string-array name="record_status">
+        <item>blank</item>
+        <item>naturally occurring</item>
+        <item>re-introduced</item>
+        <item>introduced</item>
+        <item>feral</item>
+        <item>cultivated</item>
+        <item>exotic</item>
+    </string-array>
 </resources>

@@ -47,12 +47,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/picture1"
+                    android:textSize="25dp"
                     android:id="@+id/picture1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
                     android:onClick="onClickImage1" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:layout_marginBottom="20dp"
                     android:text="@string/picture2"
                     android:id="@+id/picture2"
                     android:onClick="onClickImage2" />
@@ -60,6 +65,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:layout_marginBottom="20dp"
                     android:text="@string/picture3"
                     android:id="@+id/picture3"
                     android:onClick="onClickImage3" />
